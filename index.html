@@ -1,194 +1,209 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="theme-color" content="#090909" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090909">
 <title>OFF-the-CUFF | Number Draw</title>
 <style>
-  :root {
-    --bg: #090909;
-    --panel: #121212;
-    --panel-2: #191919;
-    --line: #303030;
-    --text: #f6f6f6;
-    --muted: #a6a6a6;
-    --red: #eb1c24;
-    --red-dark: #9e1017;
-    --green: #7ee0ad;
-    --amber: #ffd37a;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0; min-height: 100vh; color: var(--text); background:
-      radial-gradient(ellipse at 80% 0%, rgba(235,28,36,.13), transparent 36%),
-      radial-gradient(ellipse at 0% 90%, rgba(235,28,36,.07), transparent 35%), var(--bg);
-    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  }
-  button, input { font: inherit; }
-  button { cursor: pointer; }
-  .shell { max-width: 1180px; padding: 28px 22px 42px; margin: auto; }
-  .topbar { display:flex; align-items:center; justify-content:space-between; gap:18px; padding-bottom:22px; border-bottom:1px solid var(--line); }
-  .brand { display:flex; align-items:center; gap:13px; }
-  .brand-mark { width:8px; height:44px; background:var(--red); border-radius:2px; box-shadow:0 0 22px rgba(235,28,36,.35); }
-  .brand-name { font-weight:900; letter-spacing:-.055em; font-size:clamp(19px, 3vw, 27px); }
-  .brand-name span { color:var(--red); }
-  .event-tag { border:1px solid #4b2628; color:#ffb5b8; background:rgba(235,28,36,.08); border-radius:999px; padding:8px 12px; font-size:11px; letter-spacing:.13em; font-weight:800; white-space:nowrap; }
-  .eyebrow { color:var(--red); text-transform:uppercase; font-size:11px; font-weight:900; letter-spacing:.22em; }
-  .intro { padding:34px 0 25px; }
-  h1 { margin:8px 0 10px; font-size:clamp(34px, 6vw, 60px); letter-spacing:-.06em; line-height:.98; }
-  h1 span { color:var(--red); }
-  .sub { color:var(--muted); margin:0; max-width:650px; line-height:1.6; font-size:14px; }
-  .layout { display:grid; grid-template-columns:minmax(0, 1.45fr) minmax(300px, .85fr); gap:18px; align-items:start; }
-  .panel { background:rgba(18,18,18,.92); border:1px solid var(--line); border-radius:18px; overflow:hidden; box-shadow:0 18px 60px rgba(0,0,0,.16); }
-  .panel-head { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:18px 20px; border-bottom:1px solid var(--line); }
-  .panel-head h2 { margin:0; font-size:13px; letter-spacing:.12em; text-transform:uppercase; }
-  .status { display:flex; align-items:center; gap:7px; color:var(--muted); font-size:11px; }
-  .dot { width:7px; height:7px; background:var(--green); border-radius:50%; box-shadow:0 0 10px rgba(126,224,173,.4); }
-  .draw-body { padding:24px; }
-  .number-stage { position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:300px; padding:24px; border:1px solid #392022; border-radius:14px; background:radial-gradient(ellipse at 50% 55%, rgba(235,28,36,.16), transparent 58%), linear-gradient(135deg,#171313,#0d0d0d 65%); overflow:hidden; }
-  .number-stage::before,.number-stage::after { content:""; position:absolute; width:160px; height:1px; background:linear-gradient(90deg,transparent,var(--red),transparent); opacity:.7; }
-  .number-stage::before { top:22px; left:-20px; transform:rotate(-35deg); }
-  .number-stage::after { right:-20px; bottom:22px; transform:rotate(-35deg); }
-  .stage-label { color:var(--muted); text-transform:uppercase; font-size:10px; letter-spacing:.25em; font-weight:800; }
-  .number { font-size:clamp(100px, 19vw, 178px); font-weight:950; letter-spacing:-.09em; line-height:1.12; margin:5px 0 8px; text-shadow:0 0 45px rgba(235,28,36,.15); overflow-wrap:anywhere; }
-  .number.has-value { animation:pop .42s cubic-bezier(.2,.8,.2,1); }
-  @keyframes pop { 0%{transform:scale(.72);opacity:.25;filter:blur(5px)} 70%{transform:scale(1.04);opacity:1;filter:blur(0)} 100%{transform:scale(1)} }
-  .stage-hint { color:var(--muted); font-size:12px; text-align:center; }
-  .draw-actions { display:grid; grid-template-columns:1fr auto; gap:10px; margin-top:15px; }
-  .btn { border:1px solid var(--line); color:var(--text); background:var(--panel-2); border-radius:10px; padding:13px 16px; font-weight:800; font-size:13px; transition:transform .15s, border-color .15s, background .15s; }
-  .btn:hover { border-color:#666; transform:translateY(-1px); }
-  .btn:active { transform:translateY(0); }
-  .btn-primary { color:white; background:var(--red); border-color:var(--red); box-shadow:0 8px 24px rgba(235,28,36,.18); }
-  .btn-primary:hover { background:#ff2a32; border-color:#ff2a32; }
-  .btn:disabled { opacity:.42; cursor:not-allowed; transform:none; }
-  .small-btn { padding:7px 10px; font-size:11px; border-radius:8px; }
-  .side { display:grid; gap:18px; }
-  .settings { padding:19px 20px 20px; }
-  .field-label { display:block; color:var(--muted); font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.1em; margin-bottom:8px; }
-  .range-fields { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
-  input[type=number], input[type=text] { width:100%; min-width:0; background:#090909; color:var(--text); border:1px solid #393939; border-radius:9px; padding:11px 12px; outline:none; }
-  input:focus { border-color:var(--red); box-shadow:0 0 0 3px rgba(235,28,36,.1); }
-  .apply-row { display:flex; gap:9px; margin-top:12px; }
-  .apply-row .btn { flex:1; }
-  .toggle-row { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:18px; padding-top:17px; border-top:1px solid var(--line); }
-  .toggle-copy strong { display:block; font-size:13px; margin-bottom:4px; }
-  .toggle-copy span { display:block; color:var(--muted); font-size:11px; line-height:1.4; }
-  .switch { position:relative; width:44px; height:25px; flex:0 0 auto; }
-  .switch input { opacity:0; width:0; height:0; }
-  .slider { position:absolute; inset:0; background:#393939; border-radius:99px; transition:.2s; }
-  .slider::before { content:""; position:absolute; height:19px; width:19px; left:3px; top:3px; background:white; border-radius:50%; transition:.2s; }
-  .switch input:checked + .slider { background:var(--red); }
-  .switch input:checked + .slider::before { transform:translateX(19px); }
-  .stats { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; padding:0 20px 20px; }
-  .stat { padding:12px 10px; background:#0b0b0b; border:1px solid #262626; border-radius:10px; }
-  .stat strong { display:block; font-size:22px; letter-spacing:-.04em; }
-  .stat span { color:var(--muted); font-size:10px; text-transform:uppercase; letter-spacing:.08em; }
-  .manage { padding:18px 20px 20px; }
-  .manage-row { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:8px; }
-  .help { color:var(--muted); font-size:11px; line-height:1.5; margin:9px 0 0; }
-  .number-list { display:flex; flex-wrap:wrap; gap:7px; margin-top:13px; }
-  .pill { display:inline-flex; align-items:center; gap:7px; border:1px solid #3a3a3a; border-radius:8px; padding:6px 8px; font-size:12px; background:#0b0b0b; }
-  .pill button { background:none; color:var(--muted); border:0; font-size:15px; line-height:1; padding:0 1px; }
-  .pill button:hover { color:white; }
-  .pill.called { border-color:#603033; color:#ffb6b9; background:rgba(235,28,36,.07); }
-  .pill.excluded { border-color:#5b4b2d; color:var(--amber); }
-  .section-label { color:var(--muted); font-size:10px; font-weight:900; letter-spacing:.14em; text-transform:uppercase; margin-top:17px; }
-  .empty { color:#777; font-size:12px; padding:7px 0 0; }
-  .history-head { display:flex; align-items:center; justify-content:space-between; gap:8px; }
-  .foot { color:#777; font-size:10px; line-height:1.5; margin-top:22px; text-align:center; }
-  .toast { position:fixed; left:50%; bottom:22px; transform:translate(-50%,20px); opacity:0; pointer-events:none; background:#f4f4f4; color:#111; border-radius:10px; padding:11px 15px; font-size:12px; font-weight:800; box-shadow:0 10px 35px #0008; transition:.22s; z-index:10; max-width:calc(100vw - 30px); }
-  .toast.show { transform:translate(-50%,0); opacity:1; }
-  @media(max-width:820px) { .layout{grid-template-columns:1fr}.number-stage{min-height:260px}.number{font-size:clamp(100px,28vw,165px)} }
-  @media(max-width:480px) { .shell{padding:18px 13px 30px}.event-tag{font-size:9px;padding:7px 8px}.topbar{align-items:flex-start}.draw-body{padding:14px}.panel-head{padding:15px}.settings,.manage{padding:16px}.stats{padding:0 16px 16px}.stat strong{font-size:19px}.draw-actions{grid-template-columns:1fr}.number-stage{min-height:230px} }
+:root {
+  --bg:#090909; --panel:#121212; --panel2:#191919;
+  --line:#303030; --text:#f6f6f6; --muted:#a6a6a6;
+  --red:#eb1c24; --green:#7ee0ad; --amber:#ffd37a;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;min-height:100vh;color:var(--text);
+  background:radial-gradient(ellipse at 80% 0%,rgba(235,28,36,.13),transparent 36%),
+  radial-gradient(ellipse at 0% 90%,rgba(235,28,36,.07),transparent 35%),var(--bg);
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif
+}
+button,input{font:inherit}
+button{cursor:pointer}
+.shell{max-width:1180px;padding:28px 22px 42px;margin:auto}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:18px;padding-bottom:22px;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;min-width:0}
+.wordmark{display:flex;align-items:center;white-space:nowrap;line-height:1}
+.tedx{color:#eb0028;font-family:Arial Black,Arial,sans-serif;font-weight:1000;font-size:clamp(34px,5vw,52px);letter-spacing:-.09em;-webkit-text-stroke:1px #eb0028}
+.wordmark sup{color:#eb0028;font-family:Arial Black,Arial,sans-serif;font-weight:1000;font-size:clamp(19px,2.5vw,29px);letter-spacing:-.08em;margin:0 9px 0 3px;transform:translateY(-.25em)}
+.vit{color:white;font-family:Arial,Helvetica,sans-serif;font-weight:300;font-size:clamp(25px,3.8vw,43px);letter-spacing:-.055em}
+.event-tag{border:1px solid #333;color:#eee;background:#ffffff06;border-radius:999px;padding:8px 12px;font-size:12px;font-weight:700;white-space:nowrap}
+.eyebrow{color:var(--red);text-transform:uppercase;font-size:11px;font-weight:900;letter-spacing:.22em}
+.intro{padding:24px 0 18px}
+h1{margin:8px 0 10px;font-size:clamp(34px,6vw,60px);letter-spacing:-.06em;line-height:.98}
+h1 span{color:var(--red)}
+.sub{color:var(--muted);margin:0;max-width:650px;line-height:1.6;font-size:14px}
+.layout{display:grid;grid-template-columns:minmax(0,1fr);gap:16px;align-items:start}
+.panel{background:#121212eb;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 18px 60px #0003}
+.panel-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 20px;border-bottom:1px solid var(--line)}
+.panel-head h2{margin:0;font-size:13px;letter-spacing:.12em;text-transform:uppercase}
+.status{display:flex;align-items:center;gap:7px;color:var(--muted);font-size:11px}
+.dot{width:7px;height:7px;background:var(--green);border-radius:50%;box-shadow:0 0 10px #7ee0ad66}
+.draw-body{padding:24px}
+.number-stage{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:390px;padding:24px;border:1px solid #392022;border-radius:14px;background:radial-gradient(ellipse at 50% 55%,#eb1c2429,transparent 58%),linear-gradient(135deg,#171313,#0d0d0d 65%);overflow:hidden}
+.number-stage:before,.number-stage:after{content:"";position:absolute;width:160px;height:1px;background:linear-gradient(90deg,transparent,var(--red),transparent);opacity:.7}
+.number-stage:before{top:22px;left:-20px;transform:rotate(-35deg)}
+.number-stage:after{right:-20px;bottom:22px;transform:rotate(-35deg)}
+.stage-label{color:var(--muted);text-transform:uppercase;font-size:10px;letter-spacing:.25em;font-weight:800}
+.number{font-size:clamp(130px,24vw,230px);font-weight:950;letter-spacing:-.09em;line-height:1.12;margin:5px 0 8px;text-shadow:0 0 45px #eb1c2426;overflow-wrap:anywhere}
+.number.has-value{animation:pop .42s cubic-bezier(.2,.8,.2,1)}
+@keyframes pop{0%{transform:scale(.72);opacity:.25;filter:blur(5px)}70%{transform:scale(1.04);opacity:1;filter:blur(0)}100%{transform:scale(1)}}
+.stage-hint{color:var(--muted);font-size:12px;text-align:center}
+.draw-actions{display:grid;grid-template-columns:1fr auto;gap:10px;margin-top:15px}
+.btn{border:1px solid var(--line);color:var(--text);background:var(--panel2);border-radius:10px;padding:13px 16px;font-weight:800;font-size:13px;transition:transform .15s,border-color .15s,background .15s}
+.btn:hover{border-color:#666;transform:translateY(-1px)}
+.btn:active{transform:translateY(0)}
+.btn-primary{color:white;background:var(--red);border-color:var(--red);box-shadow:0 8px 24px #eb1c242e}
+.btn-primary:hover{background:#ff2a32;border-color:#ff2a32}
+.btn:disabled{opacity:.42;cursor:not-allowed;transform:none}
+.small-btn{padding:7px 10px;font-size:11px;border-radius:8px}
+.side{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;opacity:.86}
+.settings,.manage{padding:15px 17px 16px}
+.field-label{display:block;color:var(--muted);font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
+.range-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+input[type=number],input[type=text]{width:100%;min-width:0;background:#090909;color:var(--text);border:1px solid #393939;border-radius:9px;padding:11px 12px;outline:none}
+input:focus{border-color:var(--red);box-shadow:0 0 0 3px #eb1c241a}
+.apply-row{display:flex;gap:9px;margin-top:12px}
+.apply-row .btn{flex:1}
+.toggle-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:18px;padding-top:17px;border-top:1px solid var(--line)}
+.toggle-copy strong{display:block;font-size:13px;margin-bottom:4px}
+.toggle-copy span{display:block;color:var(--muted);font-size:11px;line-height:1.4}
+.switch{position:relative;width:44px;height:25px;flex:0 0 auto}
+.switch input{opacity:0;width:0;height:0}
+.slider{position:absolute;inset:0;background:#393939;border-radius:99px;transition:.2s}
+.slider:before{content:"";position:absolute;height:19px;width:19px;left:3px;top:3px;background:white;border-radius:50%;transition:.2s}
+.switch input:checked+.slider{background:var(--red)}
+.switch input:checked+.slider:before{transform:translateX(19px)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:0 20px 20px}
+.stat{padding:12px 10px;background:#0b0b0b;border:1px solid #262626;border-radius:10px}
+.stat strong{display:block;font-size:22px;letter-spacing:-.04em}
+.stat span{color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.08em}
+.manage-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px}
+.help{color:var(--muted);font-size:11px;line-height:1.5;margin:9px 0 0}
+.number-list{display:flex;flex-wrap:wrap;gap:7px;margin-top:13px}
+.pill{display:inline-flex;align-items:center;gap:7px;border:1px solid #3a3a3a;border-radius:8px;padding:6px 8px;font-size:12px;background:#0b0b0b}
+.pill button{background:none;color:var(--muted);border:0;font-size:15px;line-height:1;padding:0 1px}
+.pill button:hover{color:white}
+.pill.called{border-color:#603033;color:#ffb6b9;background:#eb1c2412}
+.pill.excluded{border-color:#5b4b2d;color:var(--amber)}
+.section-label{color:var(--muted);font-size:10px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;margin-top:17px}
+.empty{color:#777;font-size:12px;padding:7px 0 0}
+.history-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.foot{color:#777;font-size:10px;line-height:1.5;margin-top:22px;text-align:center}
+.toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#f4f4f4;color:#111;border-radius:10px;padding:11px 15px;font-size:12px;font-weight:800;box-shadow:0 10px 35px #0008;transition:.22s;z-index:10;max-width:calc(100vw - 30px)}
+.toast.show{transform:translate(-50%,0);opacity:1}
+@media(max-width:820px){.layout{grid-template-columns:1fr}.side{grid-template-columns:1fr}.number-stage{min-height:320px}.number{font-size:clamp(115px,28vw,190px)}}
+@media(max-width:480px){.shell{padding:18px 13px 30px}.event-tag{font-size:10px;padding:7px 8px}.topbar{align-items:flex-start}.tedx{font-size:clamp(27px,7vw,34px)}.wordmark sup{font-size:clamp(15px,4vw,20px);margin-right:5px}.vit{font-size:clamp(22px,6vw,31px)}.draw-body{padding:14px}.panel-head{padding:15px}.settings,.manage{padding:16px}.stats{padding:0 16px 16px}.stat strong{font-size:19px}.draw-actions{grid-template-columns:1fr}.number-stage{min-height:250px}}
 </style>
 </head>
 <body>
 <div class="shell">
-  <header class="topbar">
-    <div class="brand"><div class="brand-mark"></div><div class="brand-name">TEDx<span>VIT</span>Vellore</div></div>
-    <div class="event-tag">OFF-THE-CUFF · LIVE DRAW</div>
-  </header>
-  <section class="intro">
-    <div class="eyebrow">Think fast. Speak freely.</div>
-    <h1>Who's <span>up next?</span></h1>
-    <p class="sub">A live seat-number randomizer for OFF-the-CUFF. Draw participants, avoid repeats, and keep the room moving.</p>
-  </section>
-  <main class="layout">
-    <section class="panel">
-      <div class="panel-head"><h2>Participant draw</h2><div class="status"><span class="dot"></span><span id="statusText">Ready to draw</span></div></div>
-      <div class="draw-body">
-        <div class="number-stage" aria-live="polite">
-          <div class="stage-label" id="stageLabel">Next seat number</div>
-          <div class="number" id="numberDisplay">—</div>
-          <div class="stage-hint" id="stageHint">Set your range, then draw a number.</div>
-        </div>
-        <div class="draw-actions">
-          <button class="btn btn-primary" id="drawBtn">↗ &nbsp; DRAW NEXT NUMBER</button>
-          <button class="btn" id="resetBtn">↺ Reset round</button>
-        </div>
-      </div>
-      <div class="stats">
-        <div class="stat"><strong id="totalStat">50</strong><span>In range</span></div>
-        <div class="stat"><strong id="remainingStat">50</strong><span>Available</span></div>
-        <div class="stat"><strong id="calledStat">0</strong><span>Draws made</span></div>
-      </div>
-    </section>
-    <aside class="side">
-      <section class="panel">
-        <div class="panel-head"><h2>Draw settings</h2></div>
-        <div class="settings">
-          <div class="range-fields">
-            <div><label class="field-label" for="minNum">Minimum</label><input id="minNum" type="number" value="1" min="-999999" max="999999" /></div>
-            <div><label class="field-label" for="maxNum">Maximum</label><input id="maxNum" type="number" value="50" min="-999999" max="999999" /></div>
-          </div>
-          <div class="apply-row"><button class="btn btn-primary" id="applyRangeBtn">Apply range</button></div>
-          <div class="toggle-row">
-            <div class="toggle-copy"><strong>No-repeat mode</strong><span>Each number can be drawn only once per round.</span></div>
-            <label class="switch" aria-label="Toggle no-repeat mode"><input type="checkbox" id="noRepeat" checked /><span class="slider"></span></label>
-          </div>
-          <p class="help" id="modeHelp">ON: drawn numbers are automatically unavailable until you reset the round.</p>
-        </div>
-      </section>
-      <section class="panel">
-        <div class="panel-head"><h2>Manage seats</h2></div>
-        <div class="manage">
-          <label class="field-label" for="removeNum">Remove a seat number</label>
-          <div class="manage-row"><input id="removeNum" type="number" placeholder="e.g. 12" /><button class="btn" id="removeBtn">Remove</button></div>
-          <p class="help">Use this for absent participants or unassigned seats. Removed numbers won't be drawn. You can restore them below.</p>
-          <div class="section-label">Removed numbers</div>
-          <div class="number-list" id="excludedList"><div class="empty">No seats removed.</div></div>
-        </div>
-      </section>
-    </aside>
-  </main>
-  <section class="panel" style="margin-top:18px">
-    <div class="panel-head history-head"><h2>Draw history</h2><button class="btn small-btn" id="clearHistoryBtn">Clear history</button></div>
-    <div class="manage">
-      <p class="help" style="margin-top:0">Numbers appear here in the order they were drawn. In no-repeat mode, a number stays out of the draw pool even if you clear the visible history; use Reset round to start fresh.</p>
-      <div class="number-list" id="historyList"><div class="empty">No numbers drawn yet.</div></div>
+<header class="topbar">
+  <div class="brand" aria-label="TEDx VIT Vellore">
+    <div class="wordmark"><span class="tedx">TED</span><sup>x</sup><span class="vit">VITVellore</span></div>
+  </div>
+  <div class="event-tag">OFF-the-CUFF</div>
+</header>
+
+<section class="intro">
+  <div class="eyebrow">Think fast. Speak freely.</div>
+  <h1>Who's <span>up next?</span></h1>
+  <p class="sub">A live seat-number randomizer for OFF-the-CUFF. Draw participants, avoid repeats, and keep the room moving.</p>
+</section>
+
+<main class="layout">
+<section class="panel">
+  <div class="panel-head">
+    <h2>Participant draw</h2>
+    <div class="status"><span class="dot"></span><span id="statusText">Ready to draw</span></div>
+  </div>
+  <div class="draw-body">
+    <div class="number-stage" aria-live="polite">
+      <div class="stage-label" id="stageLabel">Next seat number</div>
+      <div class="number" id="numberDisplay">—</div>
+      <div class="stage-hint" id="stageHint">Ready when you are. Draw the next seat.</div>
     </div>
-  </section>
-  <div class="foot">OFF-the-CUFF · TEDxVITVellore-inspired host tool<br/>This page runs locally in your browser. No account or server required.</div>
+    <div class="draw-actions">
+      <button class="btn btn-primary" id="drawBtn">↗ &nbsp; DRAW NEXT NUMBER</button>
+      <button class="btn" id="resetBtn">↺ Reset round</button>
+    </div>
+  </div>
+  <div class="stats">
+    <div class="stat"><strong id="totalStat">50</strong><span>In range</span></div>
+    <div class="stat"><strong id="remainingStat">50</strong><span>Available</span></div>
+    <div class="stat"><strong id="calledStat">0</strong><span>Draws made</span></div>
+  </div>
+</section>
+
+<aside class="side">
+<section class="panel">
+  <div class="panel-head"><h2>Draw settings</h2></div>
+  <div class="settings">
+    <div class="range-fields">
+      <div><label class="field-label" for="minNum">Minimum</label><input id="minNum" type="number" value="1" min="-999999" max="999999"></div>
+      <div><label class="field-label" for="maxNum">Maximum</label><input id="maxNum" type="number" value="50" min="-999999" max="999999"></div>
+    </div>
+    <div class="apply-row"><button class="btn btn-primary" id="applyRangeBtn">Apply range</button></div>
+    <div class="toggle-row">
+      <div class="toggle-copy"><strong>No-repeat mode</strong><span>Each number can be drawn only once per round.</span></div>
+      <label class="switch" aria-label="Toggle no-repeat mode"><input type="checkbox" id="noRepeat" checked><span class="slider"></span></label>
+    </div>
+    <p class="help" id="modeHelp">ON: drawn numbers are automatically unavailable until you reset the round.</p>
+  </div>
+</section>
+
+<section class="panel">
+  <div class="panel-head"><h2>Manage seats</h2></div>
+  <div class="manage">
+    <label class="field-label" for="removeNum">Remove a seat number</label>
+    <div class="manage-row"><input id="removeNum" type="number" placeholder="e.g. 12"><button class="btn" id="removeBtn">Remove</button></div>
+    <p class="help">Use this for absent participants or unassigned seats. Removed numbers won't be drawn. You can restore them below.</p>
+    <div class="section-label">Removed numbers</div>
+    <div class="number-list" id="excludedList"><div class="empty">No seats removed.</div></div>
+  </div>
+</section>
+</aside>
+</main>
+
+<section class="panel" style="margin-top:18px">
+  <div class="panel-head history-head"><h2>Draw history</h2><button class="btn small-btn" id="clearHistoryBtn">Clear history</button></div>
+  <div class="manage">
+    <p class="help" style="margin-top:0">Numbers appear here in the order they were drawn. In no-repeat mode, clearing visible history does not make those numbers available again. Use Reset round to start fresh.</p>
+    <div class="number-list" id="historyList"><div class="empty">No numbers drawn yet.</div></div>
+  </div>
+</section>
+
+<div class="foot">OFF-the-CUFF · TEDxVITVellore-inspired host tool<br>This page runs locally in your browser. No account or server required.</div>
 </div>
 <div class="toast" id="toast" role="status"></div>
+
 <script>
 (() => {
-  const $ = (id) => document.getElementById(id);
+  const $ = id => document.getElementById(id);
   const minInput = $('minNum'), maxInput = $('maxNum'), noRepeat = $('noRepeat');
   let min = 1, max = 50;
   let history = [];
   let excluded = new Set();
   let drawn = new Set();
-  let current = null;
   let toastTimer;
 
   function toast(message) {
-    const el = $('toast'); el.textContent = message; el.classList.add('show');
-    clearTimeout(toastTimer); toastTimer = setTimeout(() => el.classList.remove('show'), 2300);
+    const el = $('toast');
+    el.textContent = message;
+    el.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => el.classList.remove('show'), 2300);
   }
-  function inRange(n) { return Number.isInteger(n) && n >= min && n <= max; }
-  function rangeCount() { return Math.max(0, max - min + 1); }
+
+  function inRange(n) {
+    return Number.isInteger(n) && n >= min && n <= max;
+  }
+
+  function rangeCount() {
+    return Math.max(0, max - min + 1);
+  }
+
   function availableNumbers() {
     const nums = [];
     for (let n = min; n <= max; n++) {
@@ -198,6 +213,7 @@
     }
     return nums;
   }
+
   function render() {
     const available = availableNumbers();
     $('totalStat').textContent = rangeCount();
@@ -208,92 +224,166 @@
     $('modeHelp').textContent = noRepeat.checked
       ? 'ON: drawn numbers are automatically unavailable until you reset the round.'
       : 'OFF: numbers can appear again, but manually removed seats stay excluded.';
-    renderExcluded(); renderHistory();
+    renderExcluded();
+    renderHistory();
   }
+
   function renderExcluded() {
     const list = $('excludedList');
-    const nums = [...excluded].filter(inRange).sort((a,b)=>a-b);
-    if (!nums.length) { list.innerHTML = '<div class="empty">No seats removed.</div>'; return; }
+    const nums = [...excluded].filter(inRange).sort((a,b) => a-b);
+    if (!nums.length) {
+      list.innerHTML = '<div class="empty">No seats removed.</div>';
+      return;
+    }
     list.innerHTML = '';
     nums.forEach(n => {
-      const chip = document.createElement('span'); chip.className = 'pill excluded';
-      const label = document.createElement('span'); label.textContent = n;
-      const btn = document.createElement('button'); btn.type = 'button'; btn.textContent = '↶'; btn.title = 'Restore seat ' + n;
-      btn.addEventListener('click', () => { excluded.delete(n); render(); toast('Seat ' + n + ' restored.'); });
-      chip.append(label, btn); list.append(chip);
+      const chip = document.createElement('span');
+      chip.className = 'pill excluded';
+      const label = document.createElement('span');
+      label.textContent = n;
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.textContent = '↶';
+      btn.title = 'Restore seat ' + n;
+      btn.addEventListener('click', () => {
+        excluded.delete(n);
+        render();
+        toast('Seat ' + n + ' restored.');
+      });
+      chip.append(label, btn);
+      list.append(chip);
     });
   }
+
   function renderHistory() {
     const list = $('historyList');
-    if (!history.length) { list.innerHTML = '<div class="empty">No numbers drawn yet.</div>'; return; }
+    if (!history.length) {
+      list.innerHTML = '<div class="empty">No numbers drawn yet.</div>';
+      return;
+    }
     list.innerHTML = '';
-    [...history].reverse().forEach((n, index) => {
-      const chip = document.createElement('span'); chip.className = 'pill called';
-      const label = document.createElement('span'); label.textContent = '#' + n;
-      const btn = document.createElement('button'); btn.type = 'button'; btn.textContent = '×'; btn.title = 'Remove seat ' + n + ' from future draws';
+    [...history].reverse().forEach(n => {
+      const chip = document.createElement('span');
+      chip.className = 'pill called';
+      const label = document.createElement('span');
+      label.textContent = '#' + n;
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.textContent = '×';
+      btn.title = 'Remove seat ' + n + ' from future draws';
       btn.addEventListener('click', () => {
-        excluded.add(n); render(); toast('Seat ' + n + ' excluded from future draws.');
+        excluded.add(n);
+        render();
+        toast('Seat ' + n + ' excluded from future draws.');
       });
-      chip.append(label, btn); list.append(chip);
+      chip.append(label, btn);
+      list.append(chip);
     });
   }
+
   function applyRange() {
     const newMin = Number(minInput.value), newMax = Number(maxInput.value);
-    if (!Number.isInteger(newMin) || !Number.isInteger(newMax)) return toast('Enter whole numbers for the range.');
-    if (newMin > newMax) return toast('Minimum must be less than or equal to maximum.');
-    if (newMax - newMin > 9999) return toast('Please keep the range to 10,000 numbers or fewer.');
-    min = newMin; max = newMax;
-    // Keep history and exclusions only for values still inside the selected range.
-    history = history.filter(inRange); drawn = new Set(history);
+    if (!Number.isInteger(newMin) || !Number.isInteger(newMax))
+      return toast('Enter whole numbers for the range.');
+    if (newMin > newMax)
+      return toast('Minimum must be less than or equal to maximum.');
+    if (newMax - newMin > 9999)
+      return toast('Please keep the range to 10,000 numbers or fewer.');
+
+    min = newMin;
+    max = newMax;
+    history = history.filter(inRange);
+    drawn = new Set(history);
     excluded = new Set([...excluded].filter(inRange));
-    current = null; $('numberDisplay').textContent = '—';
-    $('stageLabel').textContent = 'Next seat number'; $('stageHint').textContent = 'Range updated. Ready for the next draw.';
-    render(); toast('Range updated to ' + min + '–' + max + '.');
+    $('numberDisplay').textContent = '—';
+    $('stageLabel').textContent = 'Next seat number';
+    $('stageHint').textContent = 'Range updated. Ready for the next draw.';
+    render();
+    toast('Range updated to ' + min + '–' + max + '.');
   }
+
   function draw() {
     const pool = availableNumbers();
-    if (!pool.length) { toast('No eligible numbers left. Reset or change your range.'); return; }
-    // Cryptographically strong randomness when supported; fallback to Math.random.
+    if (!pool.length) {
+      toast('No eligible numbers left. Reset or change your range.');
+      return;
+    }
     let index;
     if (window.crypto && window.crypto.getRandomValues) {
       const buf = new Uint32Array(1);
       const limit = Math.floor(0x100000000 / pool.length) * pool.length;
       do { window.crypto.getRandomValues(buf); } while (buf[0] >= limit);
       index = buf[0] % pool.length;
-    } else index = Math.floor(Math.random() * pool.length);
-    current = pool[index]; history.push(current); drawn.add(current);
-    const display = $('numberDisplay'); display.classList.remove('has-value'); void display.offsetWidth;
-    display.textContent = current; display.classList.add('has-value');
-    $('stageLabel').textContent = 'Participant seat'; $('stageHint').textContent = 'Seat ' + current + ' — let’s hear it for our next speaker!';
+    } else {
+      index = Math.floor(Math.random() * pool.length);
+    }
+    const selected = pool[index];
+    history.push(selected);
+    drawn.add(selected);
+
+    const display = $('numberDisplay');
+    display.classList.remove('has-value');
+    void display.offsetWidth;
+    display.textContent = selected;
+    display.classList.add('has-value');
+    $('stageLabel').textContent = 'Participant seat';
+    $('stageHint').textContent = 'Seat ' + selected + ' — let’s hear it for our next speaker!';
     render();
   }
+
   function removeNumber() {
-    const value = Number($('removeNum').value);
-    if (!Number.isInteger(value) || $('removeNum').value.trim() === '') return toast('Enter a seat number to remove.');
-    if (!inRange(value)) return toast('That number is outside the current range.');
-    if (excluded.has(value)) return toast('That seat is already removed.');
-    excluded.add(value); $('removeNum').value = ''; render(); toast('Seat ' + value + ' removed from the draw.');
+    const input = $('removeNum');
+    const value = Number(input.value);
+    if (input.value.trim() === '' || !Number.isInteger(value))
+      return toast('Enter a seat number to remove.');
+    if (!inRange(value))
+      return toast('That number is outside the current range.');
+    if (excluded.has(value))
+      return toast('That seat is already removed.');
+    excluded.add(value);
+    input.value = '';
+    render();
+    toast('Seat ' + value + ' removed from the draw.');
   }
+
   function resetRound() {
-    history = []; drawn = new Set(); current = null;
-    $('numberDisplay').textContent = '—'; $('numberDisplay').classList.remove('has-value');
-    $('stageLabel').textContent = 'Next seat number'; $('stageHint').textContent = 'Round reset. Ready for a fresh draw.';
-    render(); toast('Round reset. Draw history cleared.');
+    history = [];
+    drawn = new Set();
+    $('numberDisplay').textContent = '—';
+    $('numberDisplay').classList.remove('has-value');
+    $('stageLabel').textContent = 'Next seat number';
+    $('stageHint').textContent = 'Round reset. Ready for a fresh draw.';
+    render();
+    toast('Round reset. Draw history cleared.');
   }
+
   $('applyRangeBtn').addEventListener('click', applyRange);
   $('drawBtn').addEventListener('click', draw);
   $('removeBtn').addEventListener('click', removeNumber);
-  $('removeNum').addEventListener('keydown', e => { if (e.key === 'Enter') removeNumber(); });
+  $('removeNum').addEventListener('keydown', e => {
+    if (e.key === 'Enter') removeNumber();
+  });
+
   $('resetBtn').addEventListener('click', () => {
-    if (history.length && !confirm('Reset the round and allow previously drawn numbers again? Removed seats will remain removed.')) return;
+    if (history.length && !confirm('Reset the round and allow previously drawn numbers again? Removed seats will remain removed.'))
+      return;
     resetRound();
   });
+
   $('clearHistoryBtn').addEventListener('click', () => {
     if (!history.length) return toast('History is already empty.');
-    if (!confirm('Clear the visible history? In no-repeat mode, drawn numbers will still stay unavailable until you reset the round.')) return;
-    history = []; render(); toast('Visible history cleared.');
+    if (!confirm('Clear visible history? Drawn numbers will still stay unavailable until you reset the round.'))
+      return;
+    history = [];
+    render();
+    toast('Visible history cleared.');
   });
-  noRepeat.addEventListener('change', () => { render(); toast(noRepeat.checked ? 'No-repeat mode is ON.' : 'Repeat mode is ON.'); });
+
+  noRepeat.addEventListener('change', () => {
+    render();
+    toast(noRepeat.checked ? 'No-repeat mode is ON.' : 'Repeat mode is ON.');
+  });
+
   render();
 })();
 </script>
