@@ -15,14 +15,19 @@
 }
 * { box-sizing:border-box; }
 body {
-  margin:0; background:radial-gradient(ellipse at 80% 0%,#eb002817,transparent 35%),var(--bg);
-  color:var(--text); font-family:Inter,system-ui,-apple-system,sans-serif;
+  margin:0;
+  background:radial-gradient(ellipse at 80% 0%,#eb002817,transparent 35%),var(--bg);
+  color:var(--text);
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
 button,input,textarea { font:inherit; }
 button { cursor:pointer; }
 button:disabled { opacity:.4; cursor:not-allowed; }
 .shell { max-width:1240px; margin:auto; padding:24px 20px 42px; }
-.topbar { display:flex; justify-content:space-between; align-items:center; gap:16px; padding-bottom:20px; border-bottom:1px solid var(--line); }
+.topbar {
+  display:flex; justify-content:space-between; align-items:center;
+  gap:16px; padding-bottom:20px; border-bottom:1px solid var(--line);
+}
 .brand { display:flex; align-items:center; white-space:nowrap; line-height:1; }
 .ted,.supx { font-family:Arial Black,Arial,sans-serif; font-weight:1000; color:var(--red); }
 .ted { font-size:clamp(34px,4vw,48px); letter-spacing:-.09em; }
@@ -35,12 +40,17 @@ button:disabled { opacity:.4; cursor:not-allowed; }
 .panel-head h2 { font-size:12px; letter-spacing:.15em; text-transform:uppercase; margin:0; }
 .subtle { color:var(--muted); font-size:11px; }
 .body { padding:18px; }
-.display { min-height:205px; border:1px solid #4b2025; border-radius:12px; background:radial-gradient(ellipse at center,#eb00281b,transparent 68%),#0b0b0b; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:18px; overflow:hidden; }
+.display {
+  min-height:205px; border:1px solid #4b2025; border-radius:12px;
+  background:radial-gradient(ellipse at center,#eb00281b,transparent 68%),#0b0b0b;
+  display:flex; flex-direction:column; align-items:center;
+  justify-content:center; text-align:center; padding:18px; overflow:hidden;
+}
 .display-label { font-size:10px; letter-spacing:.25em; text-transform:uppercase; color:var(--muted); font-weight:800; }
 .big-number { font-size:clamp(90px,13vw,150px); font-weight:950; letter-spacing:-.09em; line-height:1.15; overflow-wrap:anywhere; }
 .topic-result { font-size:clamp(22px,3vw,36px); font-weight:800; line-height:1.2; max-width:650px; margin:14px 0 4px; overflow-wrap:anywhere; }
 .hint { font-size:11px; color:var(--muted); line-height:1.5; margin-top:7px; }
-.btn { border:1px solid var(--line); background:var(--panel2); color:var(--text); padding:11px 14px; border-radius:9px; font-size:12px; font-weight:800; }
+.btn { border:1px solid var(--line); background:var(--panel2); color:var(--text); padding:11px 14px; border-radius:9px; font-size:12px; font-weight:800; transition:.15s; }
 .btn:hover { border-color:#777; }
 .primary { background:var(--red); border-color:var(--red); color:white; }
 .primary:hover { background:var(--red2); }
@@ -48,13 +58,16 @@ button:disabled { opacity:.4; cursor:not-allowed; }
 .actions .primary { flex:1; }
 .fields { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
 .field label { display:block; font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); font-weight:800; margin-bottom:7px; }
-input[type=number],input[type=text],textarea { width:100%; min-width:0; background:#090909; color:var(--text); border:1px solid #393939; border-radius:8px; padding:11px 12px; outline:none; }
+input[type=number],input[type=text],textarea {
+  width:100%; min-width:0; background:#090909; color:var(--text);
+  border:1px solid #393939; border-radius:8px; padding:11px 12px; outline:none;
+}
 textarea { resize:vertical; min-height:100px; line-height:1.5; }
 input:focus,textarea:focus { border-color:var(--red); }
 .toggleline { display:flex; align-items:center; justify-content:space-between; gap:12px; padding-top:14px; margin-top:14px; border-top:1px solid var(--line); }
 .switch { position:relative; width:42px; height:24px; flex-shrink:0; }
 .switch input { opacity:0; width:0; height:0; }
-.slider { position:absolute; inset:0; background:#444; border-radius:99px; }
+.slider { position:absolute; inset:0; background:#444; border-radius:99px; transition:.2s; }
 .slider:before { content:""; position:absolute; width:18px; height:18px; left:3px; top:3px; background:#fff; border-radius:50%; transition:.2s; }
 .switch input:checked+.slider { background:var(--red); }
 .switch input:checked+.slider:before { transform:translateX(18px); }
@@ -62,20 +75,24 @@ input:focus,textarea:focus { border-color:var(--red); }
 .stat { border:1px solid #292929; background:#0b0b0b; border-radius:9px; padding:10px; min-width:0; }
 .stat strong { font-size:20px; display:block; }
 .stat span { font-size:9px; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); }
-.section-label { font-size:10px; text-transform:uppercase; letter-spacing:.14em; font-weight:900; color:var(--muted); margin-top:16px; }
 .list { display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; }
 .chip { display:inline-flex; align-items:center; gap:6px; padding:6px 8px; border:1px solid #53262a; border-radius:7px; color:#ffc2c5; background:#eb002810; font-size:11px; max-width:100%; }
 .chip span { overflow-wrap:anywhere; }
 .chip button { border:0; background:none; color:var(--muted); padding:0 2px; font-size:15px; flex-shrink:0; }
 .chip button:hover { color:white; }
 .empty { font-size:11px; color:#777; padding:6px 0; }
+.section-label { font-size:10px; text-transform:uppercase; letter-spacing:.14em; font-weight:900; color:var(--muted); margin-top:16px; }
 .timer-panel { grid-column:1/-1; }
 .timer-body { padding:20px; }
 .mode-tabs { display:flex; gap:7px; flex-wrap:wrap; }
 .mode-tab { background:#151515; border:1px solid #333; color:#bbb; border-radius:8px; padding:9px 12px; font-size:11px; font-weight:800; }
 .mode-tab.active { background:#eb00281c; border-color:var(--red); color:white; }
 .timer-grid { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(240px,.85fr); gap:16px; margin-top:15px; }
-.timer-display { min-height:250px; border:1px solid #452126; border-radius:13px; background:radial-gradient(ellipse at center,#eb00281a,transparent 65%),#0a0a0a; display:flex; flex-direction:column; align-items:center; justify-content:center; overflow:hidden; }
+.timer-display {
+  min-height:250px; border:1px solid #452126; border-radius:13px;
+  background:radial-gradient(ellipse at center,#eb00281a,transparent 65%),#0a0a0a;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; overflow:hidden;
+}
 .timer-display.alert { animation:flash .45s ease-in-out 3; border-color:var(--red); }
 .timer-display.done { border-color:var(--red); background:#eb00281c; }
 @keyframes flash { 0%,100%{box-shadow:inset 0 0 0 0 #eb002800} 50%{box-shadow:inset 0 0 0 999px #eb002832} }
@@ -155,7 +172,7 @@ input:focus,textarea:focus { border-color:var(--red); }
     <div class="section-label">Remove absent/unassigned seat</div>
     <div class="actions"><input id="excludeSeatInput" type="number" placeholder="Seat number" style="max-width:170px"><button class="btn" id="excludeSeat">Remove</button></div>
     <div class="list" id="excludedSeats"></div>
-    <div class="section-label">Draw history — × returns seat to the pool</div>
+    <div class="section-label">Draw history — × returns a seat to the pool</div>
     <div class="list" id="seatHistory"></div>
   </div>
 </section>
@@ -180,16 +197,13 @@ input:focus,textarea:focus { border-color:var(--red); }
       <div class="stat"><strong id="topicRemaining">0</strong><span>Remaining</span></div>
       <div class="stat"><strong id="topicUsed">0</strong><span>Used</span></div>
     </div>
-
     <div class="section-label">Add topics — one per line</div>
     <textarea id="topicInput" placeholder="Paste topics here, one topic per line."></textarea>
     <div class="actions">
       <button class="btn primary" id="addTopics">Add topics</button>
       <button class="btn" id="clearTopicInput">Clear box</button>
     </div>
-    <div class="section-label">Available topics — × removes topic</div>
-    <div class="list" id="availableTopics"></div>
-    <div class="section-label">Used topics — ↶ returns topic to the pool</div>
+    <div class="section-label">Draw history — ↶ returns topic to the random pool</div>
     <div class="list" id="usedTopics"></div>
   </div>
 </section>
@@ -243,7 +257,6 @@ input:focus,textarea:focus { border-color:var(--red); }
 <script>
 (() => {
 'use strict';
-
 const $ = id => document.getElementById(id);
 let toastTimeout;
 
@@ -268,10 +281,8 @@ function randomIndex(length) {
 
 /* ===================== SEAT GENERATOR ===================== */
 
-let sMin = 1;
-let sMax = 50;
-let seatHistory = [];
-let seatRedoStack = [];
+let sMin = 1, sMax = 50;
+let seatHistory = [], seatRedoStack = [];
 let excluded = new Set();
 
 function seatPool() {
@@ -344,14 +355,11 @@ function renderSeats() {
     seatHistory.slice().reverse(),
     'No seats drawn yet.',
     n => {
-      // Remove only the latest matching draw from the history.
       const index = seatHistory.lastIndexOf(n);
       if (index !== -1) seatHistory.splice(index, 1);
 
-      // It must no longer be excluded or blocked by no-repeat history.
       excluded.delete(n);
       seatRedoStack = [];
-
       $('seatDisplay').textContent = '—';
       $('seatHint').textContent = 'Seat ' + n + ' returned to the available pool.';
       renderSeats();
@@ -408,8 +416,7 @@ $('redoSeat').onclick = () => {
 $('applySeats').onclick = () => {
   const minValue = $('seatMin').value;
   const maxValue = $('seatMax').value;
-  const min = Number(minValue);
-  const max = Number(maxValue);
+  const min = Number(minValue), max = Number(maxValue);
 
   if (minValue === '' || maxValue === '' ||
       !Number.isInteger(min) || !Number.isInteger(max) ||
@@ -537,14 +544,14 @@ let usedTopics = new Set();
 let topicHistory = [];
 let topicRedoStack = [];
 
-function renderTopicChips(id, values, emptyText, isUsed) {
-  const el = $(id);
+function renderTopicChips(values) {
+  const el = $('usedTopics');
   el.replaceChildren();
 
   if (!values.length) {
     const empty = document.createElement('span');
     empty.className = 'empty';
-    empty.textContent = emptyText;
+    empty.textContent = 'No topics drawn yet.';
     el.append(empty);
     return;
   }
@@ -559,32 +566,20 @@ function renderTopicChips(id, values, emptyText, isUsed) {
 
     const button = document.createElement('button');
     button.type = 'button';
-    button.textContent = isUsed ? '↶' : '×';
-    button.title = isUsed
-      ? 'Remove from history and make topic available again'
-      : 'Remove topic from the topic list';
+    button.textContent = '↶';
+    button.title = 'Remove from history and return topic to the random pool';
     button.setAttribute('aria-label', button.title);
 
     button.onclick = () => {
-      if (isUsed) {
-        // Remove it from used topics AND history, so it can be drawn again.
-        usedTopics.delete(topic);
-        const index = topicHistory.lastIndexOf(topic);
-        if (index !== -1) topicHistory.splice(index, 1);
-        topicRedoStack = [];
+      usedTopics.delete(topic);
+      const index = topicHistory.lastIndexOf(topic);
+      if (index !== -1) topicHistory.splice(index, 1);
+      topicRedoStack = [];
 
-        $('topicDisplay').textContent = '—';
-        $('topicHint').textContent = 'Topic returned to the available topic pool.';
-        toast('Topic returned to the random topic pool.');
-      } else {
-        topics = topics.filter(t => t !== topic);
-        usedTopics.delete(topic);
-        topicHistory = topicHistory.filter(t => t !== topic);
-        topicRedoStack = topicRedoStack.filter(t => t !== topic);
-        toast('Topic removed from the list.');
-      }
-
+      $('topicDisplay').textContent = '—';
+      $('topicHint').textContent = 'Topic returned to the available topic pool.';
       renderTopics();
+      toast('Topic returned to the random topic pool.');
     };
 
     chip.append(button);
@@ -598,14 +593,13 @@ function renderTopics() {
   $('topicTotal').textContent = topics.length;
   $('topicRemaining').textContent = available.length;
   $('topicUsed').textContent = usedTopics.size;
-  $('topicUndoPlaceholder');
   $('undoTopic').disabled = !topicHistory.length;
   $('redoTopic').disabled = !topicRedoStack.length;
-  $('topicStatus').textContent = available.length + ' remaining';
+  $('topicStatus').textContent = available.length + ' topics remaining';
   $('drawTopic').disabled = !available.length;
 
-  renderTopicChips('availableTopics', available, 'No available topics.', false);
-  renderTopicChips('usedTopics', topics.filter(t => usedTopics.has(t)), 'No topics drawn yet.', true);
+  // Only USED topics are shown. Upcoming topics stay hidden.
+  renderTopicChips(topics.filter(topic => usedTopics.has(topic)));
 }
 
 $('addTopics').onclick = () => {
@@ -628,7 +622,7 @@ $('clearTopicInput').onclick = () => $('topicInput').value = '';
 
 $('drawTopic').onclick = () => {
   const available = topics.filter(topic => !usedTopics.has(topic));
-  if (!available.length) return toast('No available topics. Restore a topic or reset the list.');
+  if (!available.length) return toast('No topics remaining. Restore a topic or reset the list.');
 
   const topic = available[randomIndex(available.length)];
   topicRedoStack = [];
