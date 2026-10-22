@@ -2,70 +2,925 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#080808">
-<title>OFF-the-CUFF</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080808">
+<title>OFF-the-CUFF | TEDxVITVellore</title>
+
 <style>
-:root{--bg:#080808;--panel:#111;--panel2:#171717;--line:#303030;--text:#f5f5f5;--muted:#a1a1a1;--red:#eb0028;--red2:#ff2638;--green:#7ee0ad;--amber:#ffd37a}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 80% 0%,#eb002817,transparent 35%),radial-gradient(ellipse at 0% 80%,#eb00280c,transparent 32%),var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,textarea{font:inherit}button{cursor:pointer}.shell{max-width:1240px;margin:auto;padding:24px 20px 42px}.topbar{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-bottom:20px;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;white-space:nowrap;line-height:1}.ted{font-family:Arial Black,Arial,sans-serif;font-weight:1000;color:var(--red);font-size:clamp(34px,4vw,48px);letter-spacing:-.09em;-webkit-text-stroke:.8px var(--red)}.supx{font-family:Arial Black,Arial,sans-serif;font-size:clamp(19px,2vw,28px);font-weight:1000;color:var(--red);letter-spacing:-.08em;margin:0 8px 0 3px;transform:translateY(-.25em)}.vit{font-family:Arial,Helvetica,sans-serif;font-weight:300;font-size:clamp(25px,3.2vw,39px);letter-spacing:-.055em}.event-tag{border:1px solid #383838;background:#ffffff05;padding:8px 12px;border-radius:99px;font-size:12px;font-weight:800;white-space:nowrap}.intro{padding:23px 0 20px}.eyebrow{font-size:11px;letter-spacing:.23em;text-transform:uppercase;color:var(--red);font-weight:900}h1{font-size:clamp(34px,5vw,58px);line-height:1;letter-spacing:-.06em;margin:9px 0}.intro p{color:var(--muted);font-size:14px;line-height:1.6;margin:0;max-width:760px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}.panel{border:1px solid var(--line);background:#111111ed;border-radius:16px;overflow:hidden;min-width:0}.panel-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:16px 18px;border-bottom:1px solid var(--line)}.panel-head h2{font-size:12px;letter-spacing:.15em;text-transform:uppercase;margin:0}.subtle{color:var(--muted);font-size:11px}.body{padding:18px}.display{min-height:205px;border:1px solid #4b2025;border-radius:12px;background:radial-gradient(ellipse at center,#eb00281b,transparent 68%),#0b0b0b;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:18px;position:relative;overflow:hidden}.display-label{font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);font-weight:800}.big-number{font-size:clamp(90px,13vw,150px);font-weight:950;letter-spacing:-.09em;line-height:1.15;overflow-wrap:anywhere}.topic-result{font-size:clamp(22px,3vw,36px);font-weight:800;line-height:1.2;max-width:650px;margin:14px 0 4px}.hint{font-size:11px;color:var(--muted);line-height:1.5;margin-top:7px}.btn{border:1px solid var(--line);background:var(--panel2);color:var(--text);padding:11px 14px;border-radius:9px;font-size:12px;font-weight:800;transition:.15s}.btn:hover{border-color:#777;transform:translateY(-1px)}.btn:disabled{opacity:.4;cursor:not-allowed;transform:none}.primary{background:var(--red);border-color:var(--red);color:white}.primary:hover{background:var(--red2);border-color:var(--red2)}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}.actions .primary{flex:1}.fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field label,.field-label{display:block;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:800;margin-bottom:7px}input[type=number],input[type=text],textarea{width:100%;min-width:0;background:#090909;color:var(--text);border:1px solid #393939;border-radius:8px;padding:11px 12px;outline:none}textarea{resize:vertical;min-height:100px;line-height:1.5}input:focus,textarea:focus{border-color:var(--red);box-shadow:0 0 0 3px #eb002817}.toggleline{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:14px;margin-top:14px;border-top:1px solid var(--line)}.switch{position:relative;width:42px;height:24px;flex-shrink:0}.switch input{opacity:0;width:0;height:0}.slider{position:absolute;inset:0;background:#444;border-radius:99px;transition:.2s}.slider:before{content:"";position:absolute;width:18px;height:18px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.2s}.switch input:checked+.slider{background:var(--red)}.switch input:checked+.slider:before{transform:translateX(18px)}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}.stat{border:1px solid #292929;background:#0b0b0b;border-radius:9px;padding:10px}.stat strong{font-size:20px;display:block}.stat span{font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}.list{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}.chip{display:inline-flex;align-items:center;gap:6px;padding:6px 8px;border:1px solid #53262a;border-radius:7px;color:#ffc2c5;background:#eb002810;font-size:11px}.chip button{border:0;background:none;color:var(--muted);padding:0 1px;font-size:15px}.chip button:hover{color:white}.empty{font-size:11px;color:#777;padding:6px 0}.section-label{font-size:10px;text-transform:uppercase;letter-spacing:.14em;font-weight:900;color:var(--muted);margin-top:16px}.timer-panel{grid-column:1/-1}.timer-body{padding:20px}.mode-tabs{display:flex;gap:7px;flex-wrap:wrap}.mode-tab{background:#151515;border:1px solid #333;color:#bbb;border-radius:8px;padding:9px 12px;font-size:11px;font-weight:800}.mode-tab.active{background:#eb00281c;border-color:var(--red);color:white}.timer-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(240px,.85fr);gap:16px;margin-top:15px}.timer-display{min-height:250px;border:1px solid #452126;border-radius:13px;background:radial-gradient(ellipse at center,#eb00281a,transparent 65%),#0a0a0a;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden}.timer-display.alert{animation:flash .45s ease-in-out 3;border-color:var(--red)}.timer-display.done{background:radial-gradient(ellipse at center,#eb00284a,transparent 70%),#0a0a0a;border-color:var(--red)}@keyframes flash{0%,100%{box-shadow:inset 0 0 0 0 #eb002800}50%{box-shadow:inset 0 0 0 999px #eb002832}}.time{font-variant-numeric:tabular-nums;font-size:clamp(72px,12vw,120px);font-weight:950;letter-spacing:-.075em;line-height:1.1}.timer-state{font-size:10px;text-transform:uppercase;letter-spacing:.2em;color:var(--muted);margin-top:10px}.turn-indicator{font-size:12px;font-weight:900;color:var(--red);letter-spacing:.12em;text-transform:uppercase;margin-top:10px}.segments{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:12px}.segment{border:1px solid #333;background:#0b0b0b;border-radius:8px;padding:10px 5px;text-align:center;color:#777;font-size:11px}.segment strong{display:block;font-size:17px;color:#bbb;margin-bottom:3px}.segment.current{border-color:var(--red);background:#eb00281a;color:white;box-shadow:0 0 18px #eb00281a}.segment.current strong{color:#ff4855}.segment.done-segment{border-color:#285640;background:#102017;color:var(--green)}.timer-side{border:1px solid #292929;border-radius:12px;padding:15px;background:#0c0c0c}.timer-side h3{font-size:11px;text-transform:uppercase;letter-spacing:.14em;margin:0 0 12px}.timer-side p{font-size:12px;color:var(--muted);line-height:1.6;margin:0 0 12px}.timer-controls{display:flex;gap:8px;flex-wrap:wrap}.timer-controls .primary{flex:1}.sound-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:14px;padding-top:13px;border-top:1px solid #292929;font-size:12px}.status-dot{width:8px;height:8px;background:var(--green);border-radius:50%;display:inline-block;margin-right:7px}.foot{text-align:center;color:#666;font-size:10px;line-height:1.6;margin-top:22px}.toast{position:fixed;bottom:20px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#f4f4f4;color:#111;border-radius:9px;padding:11px 15px;font-size:12px;font-weight:800;transition:.2s;z-index:10}.toast.show{opacity:1;transform:translate(-50%,0)}
-@media(max-width:760px){.shell{padding:17px 12px 30px}.grid{grid-template-columns:1fr}.timer-panel{grid-column:auto}.timer-grid{grid-template-columns:1fr}.display{min-height:180px}.big-number{font-size:100px}.topbar{align-items:flex-start}.event-tag{font-size:10px;padding:7px 9px}.stats{gap:5px}.stat{padding:8px}.stat strong{font-size:18px}}
-</style></head>
-<body><div class="shell">
-<header class="topbar"><div class="brand" aria-label="TEDx VITVellore"><span class="ted">TED</span><span class="supx">x</span><span class="vit">VITVellore</span></div><div class="event-tag">OFF-the-CUFF</div></header>
+:root {
+  --bg:#080808; --panel:#111; --panel2:#171717;
+  --line:#303030; --text:#f5f5f5; --muted:#a1a1a1;
+  --red:#eb0028; --red2:#ff2638; --green:#7ee0ad;
+}
+* { box-sizing:border-box; }
+body {
+  margin:0; background:radial-gradient(ellipse at 80% 0%,#eb002817,transparent 35%),var(--bg);
+  color:var(--text); font-family:Inter,system-ui,-apple-system,sans-serif;
+}
+button,input,textarea { font:inherit; }
+button { cursor:pointer; }
+button:disabled { opacity:.4; cursor:not-allowed; }
+.shell { max-width:1240px; margin:auto; padding:24px 20px 42px; }
+.topbar { display:flex; justify-content:space-between; align-items:center; gap:16px; padding-bottom:20px; border-bottom:1px solid var(--line); }
+.brand { display:flex; align-items:center; white-space:nowrap; line-height:1; }
+.ted,.supx { font-family:Arial Black,Arial,sans-serif; font-weight:1000; color:var(--red); }
+.ted { font-size:clamp(34px,4vw,48px); letter-spacing:-.09em; }
+.supx { font-size:clamp(19px,2vw,28px); margin:0 8px 0 3px; transform:translateY(-.25em); }
+.vit { font-size:clamp(25px,3.2vw,39px); font-weight:300; letter-spacing:-.055em; }
+.event-tag { border:1px solid #383838; padding:8px 12px; border-radius:99px; font-size:12px; font-weight:800; white-space:nowrap; }
+.grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; align-items:start; margin-top:22px; }
+.panel { border:1px solid var(--line); background:#111111ed; border-radius:16px; overflow:hidden; min-width:0; }
+.panel-head { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:16px 18px; border-bottom:1px solid var(--line); }
+.panel-head h2 { font-size:12px; letter-spacing:.15em; text-transform:uppercase; margin:0; }
+.subtle { color:var(--muted); font-size:11px; }
+.body { padding:18px; }
+.display { min-height:205px; border:1px solid #4b2025; border-radius:12px; background:radial-gradient(ellipse at center,#eb00281b,transparent 68%),#0b0b0b; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:18px; overflow:hidden; }
+.display-label { font-size:10px; letter-spacing:.25em; text-transform:uppercase; color:var(--muted); font-weight:800; }
+.big-number { font-size:clamp(90px,13vw,150px); font-weight:950; letter-spacing:-.09em; line-height:1.15; overflow-wrap:anywhere; }
+.topic-result { font-size:clamp(22px,3vw,36px); font-weight:800; line-height:1.2; max-width:650px; margin:14px 0 4px; overflow-wrap:anywhere; }
+.hint { font-size:11px; color:var(--muted); line-height:1.5; margin-top:7px; }
+.btn { border:1px solid var(--line); background:var(--panel2); color:var(--text); padding:11px 14px; border-radius:9px; font-size:12px; font-weight:800; }
+.btn:hover { border-color:#777; }
+.primary { background:var(--red); border-color:var(--red); color:white; }
+.primary:hover { background:var(--red2); }
+.actions { display:flex; gap:8px; flex-wrap:wrap; margin-top:12px; }
+.actions .primary { flex:1; }
+.fields { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.field label { display:block; font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); font-weight:800; margin-bottom:7px; }
+input[type=number],input[type=text],textarea { width:100%; min-width:0; background:#090909; color:var(--text); border:1px solid #393939; border-radius:8px; padding:11px 12px; outline:none; }
+textarea { resize:vertical; min-height:100px; line-height:1.5; }
+input:focus,textarea:focus { border-color:var(--red); }
+.toggleline { display:flex; align-items:center; justify-content:space-between; gap:12px; padding-top:14px; margin-top:14px; border-top:1px solid var(--line); }
+.switch { position:relative; width:42px; height:24px; flex-shrink:0; }
+.switch input { opacity:0; width:0; height:0; }
+.slider { position:absolute; inset:0; background:#444; border-radius:99px; }
+.slider:before { content:""; position:absolute; width:18px; height:18px; left:3px; top:3px; background:#fff; border-radius:50%; transition:.2s; }
+.switch input:checked+.slider { background:var(--red); }
+.switch input:checked+.slider:before { transform:translateX(18px); }
+.stats { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:12px; }
+.stat { border:1px solid #292929; background:#0b0b0b; border-radius:9px; padding:10px; min-width:0; }
+.stat strong { font-size:20px; display:block; }
+.stat span { font-size:9px; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); }
+.section-label { font-size:10px; text-transform:uppercase; letter-spacing:.14em; font-weight:900; color:var(--muted); margin-top:16px; }
+.list { display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; }
+.chip { display:inline-flex; align-items:center; gap:6px; padding:6px 8px; border:1px solid #53262a; border-radius:7px; color:#ffc2c5; background:#eb002810; font-size:11px; max-width:100%; }
+.chip span { overflow-wrap:anywhere; }
+.chip button { border:0; background:none; color:var(--muted); padding:0 2px; font-size:15px; flex-shrink:0; }
+.chip button:hover { color:white; }
+.empty { font-size:11px; color:#777; padding:6px 0; }
+.timer-panel { grid-column:1/-1; }
+.timer-body { padding:20px; }
+.mode-tabs { display:flex; gap:7px; flex-wrap:wrap; }
+.mode-tab { background:#151515; border:1px solid #333; color:#bbb; border-radius:8px; padding:9px 12px; font-size:11px; font-weight:800; }
+.mode-tab.active { background:#eb00281c; border-color:var(--red); color:white; }
+.timer-grid { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(240px,.85fr); gap:16px; margin-top:15px; }
+.timer-display { min-height:250px; border:1px solid #452126; border-radius:13px; background:radial-gradient(ellipse at center,#eb00281a,transparent 65%),#0a0a0a; display:flex; flex-direction:column; align-items:center; justify-content:center; overflow:hidden; }
+.timer-display.alert { animation:flash .45s ease-in-out 3; border-color:var(--red); }
+.timer-display.done { border-color:var(--red); background:#eb00281c; }
+@keyframes flash { 0%,100%{box-shadow:inset 0 0 0 0 #eb002800} 50%{box-shadow:inset 0 0 0 999px #eb002832} }
+.time { font-variant-numeric:tabular-nums; font-size:clamp(72px,12vw,120px); font-weight:950; letter-spacing:-.075em; line-height:1.1; }
+.timer-state { font-size:10px; text-transform:uppercase; letter-spacing:.2em; color:var(--muted); margin-top:10px; }
+.turn-indicator { font-size:12px; font-weight:900; color:var(--red); letter-spacing:.12em; text-transform:uppercase; margin-top:10px; }
+.segments { display:grid; grid-template-columns:repeat(4,1fr); gap:7px; margin-top:12px; }
+.segment { border:1px solid #333; background:#0b0b0b; border-radius:8px; padding:10px 5px; text-align:center; color:#777; font-size:11px; }
+.segment strong { display:block; font-size:17px; color:#bbb; margin-bottom:3px; }
+.segment.current { border-color:var(--red); background:#eb00281a; color:white; }
+.segment.current strong { color:#ff4855; }
+.segment.done-segment { border-color:#285640; background:#102017; color:var(--green); }
+.timer-side { border:1px solid #292929; border-radius:12px; padding:15px; background:#0c0c0c; }
+.timer-side h3 { font-size:11px; text-transform:uppercase; letter-spacing:.14em; margin:0 0 12px; }
+.timer-side p { font-size:12px; color:var(--muted); line-height:1.6; margin:0 0 12px; }
+.sound-row { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:14px; padding-top:13px; border-top:1px solid #292929; font-size:12px; }
+.status-dot { width:8px; height:8px; background:var(--green); border-radius:50%; display:inline-block; margin-right:7px; }
+.foot { text-align:center; color:#666; font-size:10px; line-height:1.6; margin-top:22px; }
+.toast { position:fixed; bottom:20px; left:50%; transform:translate(-50%,20px); opacity:0; pointer-events:none; background:#f4f4f4; color:#111; border-radius:9px; padding:11px 15px; font-size:12px; font-weight:800; transition:.2s; z-index:10; max-width:90%; text-align:center; }
+.toast.show { opacity:1; transform:translate(-50%,0); }
+@media(max-width:760px) {
+  .shell { padding:17px 12px 30px; }
+  .grid { grid-template-columns:1fr; }
+  .timer-panel { grid-column:auto; }
+  .timer-grid { grid-template-columns:1fr; }
+  .display { min-height:180px; }
+  .big-number { font-size:100px; }
+  .topbar { align-items:flex-start; }
+  .event-tag { font-size:10px; padding:7px 9px; }
+  .stats { gap:5px; }
+  .stat { padding:8px; }
+  .stat strong { font-size:18px; }
+}
+</style>
+</head>
+
+<body>
+<div class="shell">
+<header class="topbar">
+  <div class="brand" aria-label="TEDx VITVellore">
+    <span class="ted">TED</span><span class="supx">x</span><span class="vit">VITVellore</span>
+  </div>
+  <div class="event-tag">OFF-the-CUFF</div>
+</header>
 
 <div class="grid">
-<section class="panel"><div class="panel-head"><h2>01 / Seat number</h2><span class="subtle" id="seatStatus">Ready to draw</span></div><div class="body"><div class="display"><div class="display-label">Next seat number</div><div class="big-number" id="seatDisplay">—</div><div class="hint" id="seatHint">Draw a participant when you're ready.</div></div><div class="actions"><button class="btn primary" id="drawSeat">↗ DRAW SEAT</button><button class="btn" id="clearSeat">Clear</button><button class="btn" id="undoSeat" disabled>↶ Undo</button><button class="btn" id="redoSeat" disabled>↷ Redo</button><button class="btn" id="resetSeats">↺ Reset</button></div><div class="stats"><div class="stat"><strong id="seatTotal">50</strong><span>In range</span></div><div class="stat"><strong id="seatAvailable">50</strong><span>Available</span></div><div class="stat"><strong id="seatCalled">0</strong><span>Drawn</span></div></div><div class="section-label">Seat range</div><div class="fields" style="margin-top:9px"><div class="field"><label for="seatMin">Minimum</label><input id="seatMin" type="number" value="1"></div><div class="field"><label for="seatMax">Maximum</label><input id="seatMax" type="number" value="50"></div></div><div class="actions"><button class="btn" id="applySeats">Apply range</button></div><div class="toggleline"><div><b style="font-size:12px">No-repeat mode</b><div class="hint">Drawn numbers stay unavailable until reset.</div></div><label class="switch"><input id="seatNoRepeat" type="checkbox" checked><span class="slider"></span></label></div><div class="section-label">Remove absent/unassigned seat</div><div class="actions"><input id="excludeSeatInput" type="number" placeholder="Seat number" style="max-width:170px"><button class="btn" id="excludeSeat">Remove</button></div><div class="list" id="excludedSeats"><span class="empty">No seats removed.</span></div><div class="section-label">Draw history</div><div class="list" id="seatHistory"><span class="empty">No seats drawn yet.</span></div></div></section>
+<section class="panel">
+  <div class="panel-head"><h2>01 / Seat number</h2><span class="subtle" id="seatStatus">Ready to draw</span></div>
+  <div class="body">
+    <div class="display">
+      <div class="display-label">Next seat number</div>
+      <div class="big-number" id="seatDisplay">—</div>
+      <div class="hint" id="seatHint">Draw a participant when you're ready.</div>
+    </div>
+    <div class="actions">
+      <button class="btn primary" id="drawSeat">↗ DRAW SEAT</button>
+      <button class="btn" id="clearSeat">Clear</button>
+      <button class="btn" id="undoSeat" disabled>↶ Undo</button>
+      <button class="btn" id="redoSeat" disabled>↷ Redo</button>
+      <button class="btn" id="resetSeats">↺ Reset</button>
+    </div>
+    <div class="stats">
+      <div class="stat"><strong id="seatTotal">50</strong><span>In range</span></div>
+      <div class="stat"><strong id="seatAvailable">50</strong><span>Available</span></div>
+      <div class="stat"><strong id="seatCalled">0</strong><span>Drawn</span></div>
+    </div>
+    <div class="section-label">Seat range</div>
+    <div class="fields" style="margin-top:9px">
+      <div class="field"><label for="seatMin">Minimum</label><input id="seatMin" type="number" value="1"></div>
+      <div class="field"><label for="seatMax">Maximum</label><input id="seatMax" type="number" value="50"></div>
+    </div>
+    <div class="actions"><button class="btn" id="applySeats">Apply range</button></div>
+    <div class="toggleline">
+      <div><b style="font-size:12px">No-repeat mode</b><div class="hint">Drawn numbers stay unavailable until restored or reset.</div></div>
+      <label class="switch"><input id="seatNoRepeat" type="checkbox" checked><span class="slider"></span></label>
+    </div>
+    <div class="section-label">Remove absent/unassigned seat</div>
+    <div class="actions"><input id="excludeSeatInput" type="number" placeholder="Seat number" style="max-width:170px"><button class="btn" id="excludeSeat">Remove</button></div>
+    <div class="list" id="excludedSeats"></div>
+    <div class="section-label">Draw history — × returns seat to the pool</div>
+    <div class="list" id="seatHistory"></div>
+  </div>
+</section>
 
-<section class="panel"><div class="panel-head"><h2>02 / Topic generator</h2><span class="subtle" id="topicStatus">66 topics ready</span></div><div class="body"><div class="display" style="min-height:250px"><div class="display-label">Your topic</div><div class="topic-result" id="topicDisplay">Ready when you are.</div><div class="hint" id="topicHint">Choose a topic at random. Each topic is used once until you reset the list.</div></div><div class="actions"><button class="btn primary" id="drawTopic">✦ DRAW TOPIC</button><button class="btn" id="clearTopic">Clear</button><button class="btn" id="undoTopic" disabled>↶ Undo</button><button class="btn" id="redoTopic" disabled>↷ Redo</button><button class="btn" id="resetTopics">↺ Reset topics</button></div><div class="stats"><div class="stat"><strong id="topicTotal">66</strong><span>Total topics</span></div><div class="stat"><strong id="topicRemaining">66</strong><span>Remaining</span></div><div class="stat"><strong id="topicUsed">0</strong><span>Used</span></div></div><div id="topicManagement" hidden><div class="section-label">Add topics (one per line)</div><textarea id="topicInput" placeholder="Paste your topics here, one topic per line.&#10;&#10;Example:&#10;Is social media doing more harm than good?&#10;Failure is the best teacher.&#10;Should attendance be compulsory?"></textarea><div class="actions"><button class="btn primary" id="addTopics">Add topics</button><button class="btn" id="clearTopicInput">Clear box</button></div><div class="section-label">Available topics</div><div class="list" id="availableTopics"><span class="empty">Loading topics…</span></div><div class="section-label">Used topics</div><div class="list" id="usedTopics"><span class="empty">No topics drawn yet.</span></div></div></div></section>
+<section class="panel">
+  <div class="panel-head"><h2>02 / Topic generator</h2><span class="subtle" id="topicStatus">Topics ready</span></div>
+  <div class="body">
+    <div class="display" style="min-height:250px">
+      <div class="display-label">Your topic</div>
+      <div class="topic-result" id="topicDisplay">Ready when you are.</div>
+      <div class="hint" id="topicHint">Each topic is used once until restored or reset.</div>
+    </div>
+    <div class="actions">
+      <button class="btn primary" id="drawTopic">✦ DRAW TOPIC</button>
+      <button class="btn" id="clearTopic">Clear</button>
+      <button class="btn" id="undoTopic" disabled>↶ Undo</button>
+      <button class="btn" id="redoTopic" disabled>↷ Redo</button>
+      <button class="btn" id="resetTopics">↺ Reset topics</button>
+    </div>
+    <div class="stats">
+      <div class="stat"><strong id="topicTotal">0</strong><span>Total topics</span></div>
+      <div class="stat"><strong id="topicRemaining">0</strong><span>Remaining</span></div>
+      <div class="stat"><strong id="topicUsed">0</strong><span>Used</span></div>
+    </div>
 
-<section class="panel timer-panel"><div class="panel-head"><h2>03 / Speech timer</h2><span class="subtle"><span class="status-dot"></span><span id="timerStatus">Ready</span></span></div><div class="timer-body"><div class="mode-tabs"><button class="mode-tab active" data-mode="speech1">1-minute speech</button><button class="mode-tab" data-mode="speech2">2-minute speech</button><button class="mode-tab" data-mode="debate">Debate · 4 × 30 sec</button></div><div class="timer-grid"><div><div class="timer-display" id="timerDisplay"><div class="display-label" id="timerLabel">One-minute speech</div><div class="time" id="timeDisplay">01:00</div><div class="timer-state" id="timerState">Ready to start</div><div class="turn-indicator" id="turnIndicator"></div></div><div class="segments" id="segments" hidden><div class="segment" data-segment="0"><strong>01</strong>0–30 sec</div><div class="segment" data-segment="1"><strong>02</strong>30–60 sec</div><div class="segment" data-segment="2"><strong>03</strong>60–90 sec</div><div class="segment" data-segment="3"><strong>04</strong>90–120 sec</div></div><div class="actions"><button class="btn primary" id="startTimer">▶ START</button><button class="btn" id="pauseTimer" disabled>Ⅱ PAUSE</button><button class="btn" id="resetTimer">↺ RESET</button></div></div><aside class="timer-side"><h3>Timer controls</h3><p id="timerDescription">A one-minute countdown for a quick speech. A sound and red visual alert signal the end.</p><p id="debateInstructions" hidden>Each segment lasts 30 seconds. At each interval, a sound and red flash signal the speaker handoff. The final signal marks the end of the two-minute round.</p><div class="sound-row"><span>Alert sound</span><label class="switch"><input type="checkbox" id="soundToggle" checked><span class="slider"></span></label></div><div class="sound-row"><span>Visual flash</span><label class="switch"><input type="checkbox" id="flashToggle" checked><span class="slider"></span></label></div><div class="actions"><button class="btn" id="testSound">♪ Test sound</button></div><p class="hint">Tip: press START once before the event to allow browser audio. Keep this tab open while the timer runs.</p></aside></div></div></section>
-</div><div class="foot">OFF-the-CUFF · TEDxVITVellore-inspired event tool<br>Seat draw, topic draw and timer are independent. Keep this page open during the event.</div></div><div class="toast" id="toast" role="status"></div>
+    <div class="section-label">Add topics — one per line</div>
+    <textarea id="topicInput" placeholder="Paste topics here, one topic per line."></textarea>
+    <div class="actions">
+      <button class="btn primary" id="addTopics">Add topics</button>
+      <button class="btn" id="clearTopicInput">Clear box</button>
+    </div>
+    <div class="section-label">Available topics — × removes topic</div>
+    <div class="list" id="availableTopics"></div>
+    <div class="section-label">Used topics — ↶ returns topic to the pool</div>
+    <div class="list" id="usedTopics"></div>
+  </div>
+</section>
+
+<section class="panel timer-panel">
+  <div class="panel-head"><h2>03 / Speech timer</h2><span class="subtle"><span class="status-dot"></span><span id="timerStatus">Ready</span></span></div>
+  <div class="timer-body">
+    <div class="mode-tabs">
+      <button class="mode-tab active" data-mode="speech1">1-minute speech</button>
+      <button class="mode-tab" data-mode="speech2">2-minute speech</button>
+      <button class="mode-tab" data-mode="debate">Debate · 4 × 30 sec</button>
+    </div>
+    <div class="timer-grid">
+      <div>
+        <div class="timer-display" id="timerDisplay">
+          <div class="display-label" id="timerLabel">One-minute speech</div>
+          <div class="time" id="timeDisplay">01:00</div>
+          <div class="timer-state" id="timerState">Ready to start</div>
+          <div class="turn-indicator" id="turnIndicator"></div>
+        </div>
+        <div class="segments" id="segments" hidden>
+          <div class="segment" data-segment="0"><strong>01</strong>0–30 sec</div>
+          <div class="segment" data-segment="1"><strong>02</strong>30–60 sec</div>
+          <div class="segment" data-segment="2"><strong>03</strong>60–90 sec</div>
+          <div class="segment" data-segment="3"><strong>04</strong>90–120 sec</div>
+        </div>
+        <div class="actions">
+          <button class="btn primary" id="startTimer">▶ START</button>
+          <button class="btn" id="pauseTimer" disabled>Ⅱ PAUSE</button>
+          <button class="btn" id="resetTimer">↺ RESET</button>
+        </div>
+      </div>
+      <aside class="timer-side">
+        <h3>Timer controls</h3>
+        <p id="timerDescription">A one-minute countdown. A sound and red visual alert signal the end.</p>
+        <p id="debateInstructions" hidden>Each segment lasts 30 seconds. A sound and visual flash signal every speaker handoff.</p>
+        <div class="sound-row"><span>Alert sound</span><label class="switch"><input type="checkbox" id="soundToggle" checked><span class="slider"></span></label></div>
+        <div class="sound-row"><span>Visual flash</span><label class="switch"><input type="checkbox" id="flashToggle" checked><span class="slider"></span></label></div>
+        <div class="actions"><button class="btn" id="testSound">♪ Test sound</button></div>
+        <p class="hint">Press START once before the event to enable browser audio. Keep this tab open while the timer runs.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+</div>
+
+<div class="foot">OFF-the-CUFF · TEDxVITVellore-inspired event tool</div>
+</div>
+<div class="toast" id="toast" role="status"></div>
 
 <script>
-(()=>{'use strict';const $=id=>document.getElementById(id);let toastTimeout;function toast(msg){const el=$('toast');el.textContent=msg;el.classList.add('show');clearTimeout(toastTimeout);toastTimeout=setTimeout(()=>el.classList.remove('show'),2200)}
-function randomIndex(length){if(length<=1)return 0;if(crypto&&crypto.getRandomValues){const a=new Uint32Array(1),limit=Math.floor(4294967296/length)*length;do{crypto.getRandomValues(a)}while(a[0]>=limit);return a[0]%length}return Math.floor(Math.random()*length)}
+(() => {
+'use strict';
 
-// SEAT NUMBER GENERATOR
-let sMin=1,sMax=50,seatHistory=[],seatRedoStack=[],excluded=new Set();
-function seatPool(){const a=[];for(let n=sMin;n<=sMax;n++)if(!excluded.has(n)&&(!$('seatNoRepeat').checked||!seatHistory.includes(n)))a.push(n);return a}
-function renderSeats(){const pool=seatPool();$('seatTotal').textContent=sMax-sMin+1;$('seatAvailable').textContent=pool.length;$('seatCalled').textContent=seatHistory.length;$('undoSeat').disabled=!seatHistory.length;$('redoSeat').disabled=!seatRedoStack.length;$('seatStatus').textContent=pool.length?'Ready to draw':'All eligible seats drawn';renderSet('excludedSeats',[...excluded].filter(n=>n>=sMin&&n<=sMax).sort((a,b)=>a-b),'No seats removed.',n=>{excluded.delete(n);renderSeats();toast('Seat '+n+' restored.')},'excluded');renderSet('seatHistory',seatHistory.slice().reverse(),'No seats drawn yet.',n=>{excluded.add(n);renderSeats();toast('Seat '+n+' excluded from future draws.')},'called')}
-function renderSet(id,values,emptyText,onRemove,cls){const el=$(id);el.replaceChildren();if(!values.length){const e=document.createElement('span');e.className='empty';e.textContent=emptyText;el.append(e);return}values.forEach(n=>{const chip=document.createElement('span');chip.className='chip';const label=document.createElement('span');label.textContent=(cls==='called'?'#':'')+n;const b=document.createElement('button');b.textContent=cls==='called'?'×':'↶';b.title=cls==='called'?'Exclude seat '+n:'Restore seat '+n;b.onclick=()=>onRemove(n);chip.append(label,b);el.append(chip)})}
-$('drawSeat').onclick=()=>{const pool=seatPool();if(!pool.length)return toast('No available seats. Reset or change the range.');const n=pool[randomIndex(pool.length)];seatRedoStack=[];seatHistory.push(n);$('seatDisplay').textContent=n;$('seatHint').textContent='Seat '+n+' — let’s hear it for our next speaker!';renderSeats()};
-$('clearSeat').onclick=()=>{$('seatDisplay').textContent='—';$('seatHint').textContent='Display cleared. The seat remains selected.'};
-$('undoSeat').onclick=()=>{if(!seatHistory.length)return toast('There is no seat selection to undo.');const n=seatHistory.pop();seatRedoStack.push(n);$('seatDisplay').textContent='—';$('seatHint').textContent='Seat '+n+' selection undone. Ready to draw.';renderSeats();toast('Seat '+n+' returned to the available pool.')};
-$('redoSeat').onclick=()=>{if(!seatRedoStack.length)return toast('There is no seat selection to redo.');const n=seatRedoStack.pop();if(n<sMin||n>sMax||excluded.has(n)){renderSeats();return toast('That seat is no longer eligible.')}seatHistory.push(n);$('seatDisplay').textContent=n;$('seatHint').textContent='Seat '+n+' — selection redone.';renderSeats();toast('Seat '+n+' selection restored.')};
-$('applySeats').onclick=()=>{const a=Number($('seatMin').value),b=Number($('seatMax').value);if($('seatMin').value===''||$('seatMax').value===''||!Number.isInteger(a)||!Number.isInteger(b)||a>b||b-a>9999)return toast('Enter a valid range of up to 10,000 numbers.');sMin=a;sMax=b;seatHistory=seatHistory.filter(n=>n>=a&&n<=b);seatRedoStack=seatRedoStack.filter(n=>n>=a&&n<=b);excluded=new Set([...excluded].filter(n=>n>=a&&n<=b));$('seatDisplay').textContent='—';$('seatHint').textContent='Range updated. Ready to draw.';renderSeats();toast('Seat range updated.')};
-$('resetSeats').onclick=()=>{if(seatHistory.length&&!confirm('Reset the seat round? Removed seats will stay removed.'))return;seatHistory=[];seatRedoStack=[];$('seatDisplay').textContent='—';$('seatHint').textContent='Round reset. Ready for a fresh draw.';renderSeats();toast('Seat round reset.')};
-$('excludeSeat').onclick=()=>{const el=$('excludeSeatInput'),n=Number(el.value);if(el.value.trim()===''||!Number.isInteger(n)||n<sMin||n>sMax)return toast('Enter a seat number within the current range.');if(excluded.has(n))return toast('That seat is already removed.');excluded.add(n);seatRedoStack=seatRedoStack.filter(x=>x!==n);el.value='';renderSeats();toast('Seat '+n+' removed.')};
-$('excludeSeatInput').onkeydown=e=>{if(e.key==='Enter')$('excludeSeat').click()};$('seatNoRepeat').onchange=renderSeats;renderSeats();
+const $ = id => document.getElementById(id);
+let toastTimeout;
 
-// TOPIC GENERATOR — separate from seats and timer
-let topics=["Does pineapple belong on pizza?","Are we too nonchalant?","Will AI overthrow us in the future?","Should doctors and healthcare workers be paid more than professional athletes?","Would immortality be a curse rather than a blessing?","Is Spider-Man the greatest piece of fiction ever created?","Is nostalgia poisoning modern culture?","Will humans fall in love with AI companions instead of seeking real connections?","Is documenting your life through Instagram Stories performative?","Does free will really exist?","Vampires","Werewolves","Goosebumps","Nostalgia","Why do we trust AI?","The internet never forgets.","Gen Z","Cringe","First Aid","VIT","Camera Glasses and Privacy","Cinema and Consequences","Confidence vs Competence","Search History Judgments","Is Luck More Than Chance?","Are We Losing Our Attention Spans?","Can Memes Change Society?","Is Being Average Underrated?","Are First Impressions Always Right?","Can We Live Without Lies?","Are Villains Better Than Heroes?","Team Cap vs. Team Iron Man","Would You Rather Read Minds or See the Future?","Can Money Actually Buy Happiness?","Is Soup Just Savoury Juice?","Main Character or Fan-Favourite Sidekick?","Is Ignorance Truly Bliss?","Is Chronically Online a Personality Trait?","Mysterious or Just Bad at Communicating?","Does a Straw Have One Hole or Two?","Esports vs Traditional Sports","The Rise of Influencers: Can Anyone Become Famous?","Cancel Culture: Accountability or Online Bullying?","Luxury Brands: Quality or Just a Logo?","The Dark Side of Reality TV","The Reality of “Get Rich Quick” Schemes","The Art of Procrastination","Android vs iPhone","The Joy of Doing Nothing","The Fear of Missing Out (FOMO)","An All-Nighter Before an Exam Does More Harm Than Good","Texting Is Better Than Calling","The Snooze Button Is a Trap Disguised as a Friend","Group Study Sessions Are Just Glorified Hangouts Where Nothing Gets Done","Failure Is a Better Teacher Than Success","Grades Do Not Define Your Intelligence","Dogs Make Better Pets Than Cats","Is Delusion the Key to Success?","Fame vs Genuine Respect","Are We Living or Posting?","Is College More Than a Degree?","Would You Want to Know Your Future?","Is Ghosting Ever Justified?","Passion vs Money","Do We Have Too Many Choices?","Smartest Person or Most Interesting?"];
-let usedTopics=new Set(),topicHistory=[],topicRedoStack=[];
-function renderTopics(){const available=topics.filter(t=>!usedTopics.has(t));$('topicTotal').textContent=topics.length;$('topicRemaining').textContent=available.length;$('topicUsed').textContent=usedTopics.size;$('undoTopic').disabled=!topicHistory.length;$('redoTopic').disabled=!topicRedoStack.length;$('topicStatus').textContent=available.length+' remaining';renderTopicChips('availableTopics',available,'Your topics will appear here.',false);renderTopicChips('usedTopics',topics.filter(t=>usedTopics.has(t)),'No topics drawn yet.',true);$('drawTopic').disabled=!available.length}
-function renderTopicChips(id,arr,emptyText,isUsed){const el=$(id);el.replaceChildren();if(!el)return;if(!arr.length){const s=document.createElement('span');s.className='empty';s.textContent=emptyText;el.append(s);return}arr.forEach(t=>{const c=document.createElement('span');c.className='chip';c.style.maxWidth='100%';const label=document.createElement('span');label.textContent=t;label.style.overflowWrap='anywhere';c.append(label);const b=document.createElement('button');b.textContent=isUsed?'↶':'×';b.title=isUsed?'Make topic available again':'Remove topic';b.onclick=()=>{if(isUsed)usedTopics.delete(t);else{topics=topics.filter(x=>x!==t);usedTopics.delete(t)}renderTopics()};c.append(b);el.append(c)})}
-$('addTopics').onclick=()=>{const lines=$('topicInput').value.split(/\r?\n/).map(x=>x.trim()).filter(Boolean);let added=0;for(const t of lines)if(!topics.includes(t)){topics.push(t);added++}$('topicInput').value='';renderTopics();toast(added?added+' topic(s) added.':'No new topics to add.')};
-$('clearTopicInput').onclick=()=>$('topicInput').value='';
-$('drawTopic').onclick=()=>{const available=topics.filter(t=>!usedTopics.has(t));if(!available.length)return toast('Add topics or reset the used list.');const t=available[randomIndex(available.length)];topicRedoStack=[];usedTopics.add(t);topicHistory.push(t);$('topicDisplay').textContent=t;$('topicHint').textContent='Topic selected. Research time starts when you’re ready.';renderTopics()};
-$('clearTopic').onclick=()=>{$('topicDisplay').textContent='—';$('topicHint').textContent='Display cleared. The topic remains selected.'};
-$('undoTopic').onclick=()=>{if(!topicHistory.length)return toast('There is no topic selection to undo.');const t=topicHistory.pop();topicRedoStack.push(t);usedTopics.delete(t);$('topicDisplay').textContent='—';$('topicHint').textContent='Topic selection undone. Ready to draw.';renderTopics();toast('Topic returned to the available pool.')};
-$('redoTopic').onclick=()=>{if(!topicRedoStack.length)return toast('There is no topic selection to redo.');const t=topicRedoStack.pop();if(!topics.includes(t)||usedTopics.has(t)){renderTopics();return toast('That topic is no longer available to redo.')}usedTopics.add(t);topicHistory.push(t);$('topicDisplay').textContent=t;$('topicHint').textContent='Topic selection redone.';renderTopics();toast('Topic selection restored.')};
-$('resetTopics').onclick=()=>{if(usedTopics.size&&!confirm('Make all topics available again? The seat generator and timer will not change.'))return;usedTopics.clear();topicHistory=[];topicRedoStack=[];$('topicDisplay').textContent='Ready when you are.';$('topicHint').textContent='Topics reset. Draw a new topic.';renderTopics();toast('Topic list reset.')};renderTopics();
+function toast(message) {
+  const el = $('toast');
+  el.textContent = message;
+  el.classList.add('show');
+  clearTimeout(toastTimeout);
+  toastTimeout = setTimeout(() => el.classList.remove('show'), 2400);
+}
 
-// SPEECH AND DEBATE TIMER — independent of both generators
-let mode='speech1',duration=60,remaining=60,elapsed=0,interval=null,running=false,finished=false,lastBoundary=0,audioCtx=null;
-const modeNames={speech1:'One-minute speech',speech2:'Two-minute speech',debate:'Debate · 4 × 30 seconds'};
-function audioReady(){try{const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return null;if(!audioCtx)audioCtx=new AC();if(audioCtx.state==='suspended')audioCtx.resume();return audioCtx}catch(e){return null}}
-function beep(kind='alert'){if(!$('soundToggle').checked)return;const ctx=audioReady();if(!ctx)return;const now=ctx.currentTime;const patterns=kind==='tick'?[[660,0,.12]]:kind==='end'?[[880,0,.18],[660,.22,.18],[880,.44,.3]]:[[740,0,.12],[880,.17,.16]];patterns.forEach(([freq,offset,len])=>{const osc=ctx.createOscillator(),gain=ctx.createGain();osc.type='sine';osc.frequency.value=freq;gain.gain.setValueAtTime(.0001,now+offset);gain.gain.exponentialRampToValueAtTime(.18,now+offset+.015);gain.gain.exponentialRampToValueAtTime(.0001,now+offset+len);osc.connect(gain);gain.connect(ctx.destination);osc.start(now+offset);osc.stop(now+offset+len+.02)})}
-function flash(){if(!$('flashToggle').checked)return;const el=$('timerDisplay');el.classList.remove('alert');void el.offsetWidth;el.classList.add('alert');setTimeout(()=>el.classList.remove('alert'),1400)}
-function fmt(s){s=Math.max(0,Math.ceil(s));return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')}
-function stopTimer(){if(interval!==null){clearInterval(interval);interval=null}running=false;$('pauseTimer').disabled=true;$('startTimer').disabled=finished;$('startTimer').textContent=remaining===duration?'▶ START':'▶ RESUME'}
-function renderTimer(){$('timeDisplay').textContent=fmt(remaining);if(mode==='debate'){const completed=Math.min(4,Math.floor(elapsed/30));document.querySelectorAll('.segment').forEach((el,i)=>{el.classList.toggle('current',running&&i===Math.min(3,Math.floor(elapsed/30)));el.classList.toggle('done-segment',i<completed||finished)});const speaker=Math.min(4,Math.floor(elapsed/30)+1);$('turnIndicator').textContent=finished?'DEBATE COMPLETE':(running||elapsed>0?'TURN '+speaker+' OF 4':'4 SPEAKERS · 30 SECONDS EACH')}else{$('turnIndicator').textContent=''}}
-function setMode(next){stopTimer();mode=next;duration=mode==='speech1'?60:120;remaining=duration;elapsed=0;finished=false;lastBoundary=0;document.querySelectorAll('.mode-tab').forEach(b=>b.classList.toggle('active',b.dataset.mode===mode));$('timerLabel').textContent=modeNames[mode];$('timerDescription').textContent=mode==='speech1'?'A one-minute countdown. A sound and red visual alert signal the end.':mode==='speech2'?'A two-minute countdown. A sound and red visual alert signal the end.':'A two-minute debate split into four 30-second turns, with a sound and visual alert at every handoff.';$('debateInstructions').hidden=mode!=='debate';$('segments').hidden=mode!=='debate';$('turnIndicator').textContent='';$('timerDisplay').classList.remove('done','alert');renderTimer();$('timerState').textContent='Ready to start';$('timerStatus').textContent='Ready'}
-function startTick(){if(!running)return;const now=performance.now();elapsed=Math.min(duration,elapsed+(now-startTick.last)/1000);startTick.last=now;remaining=Math.max(0,duration-elapsed);if(mode==='debate'){const boundary=Math.floor(elapsed/30);if(boundary>lastBoundary){lastBoundary=boundary;beep(elapsed>=duration?'end':'tick');flash();if(elapsed<duration){$('timerState').textContent='Switch speakers now';toast('30 seconds up — speaker '+(boundary+1)+' starts now.')}}}if(remaining<=0){remaining=0;elapsed=duration;finished=true;stopTimer();$('timerStatus').textContent='Time is up';$('timerState').textContent='TIME IS UP';$('timerDisplay').classList.add('done');$('startTimer').disabled=true;$('startTimer').textContent='✓ COMPLETE';if(mode!=='debate'||lastBoundary<4){beep('end');flash()}if(mode==='debate')$('turnIndicator').textContent='DEBATE COMPLETE';toast('Time is up!')}renderTimer()}
-$('startTimer').onclick=()=>{if(finished||running)return;audioReady();running=true;startTick.last=performance.now();$('timerStatus').textContent='Running';$('timerState').textContent='Timer running';$('startTimer').disabled=true;$('startTimer').textContent='▶ RUNNING';$('pauseTimer').disabled=false;interval=setInterval(startTick,100)};
-$('pauseTimer').onclick=()=>{if(!running)return;const now=performance.now();elapsed=Math.min(duration,elapsed+(now-startTick.last)/1000);remaining=Math.max(0,duration-elapsed);stopTimer();$('timerStatus').textContent='Paused';$('timerState').textContent='Paused';$('startTimer').disabled=false;$('startTimer').textContent='▶ RESUME';renderTimer()};
-$('resetTimer').onclick=()=>{stopTimer();remaining=duration;elapsed=0;finished=false;lastBoundary=0;$('timerDisplay').classList.remove('done','alert');$('timerStatus').textContent='Ready';$('timerState').textContent='Ready to start';$('startTimer').disabled=false;$('startTimer').textContent='▶ START';renderTimer()};
-document.querySelectorAll('.mode-tab').forEach(b=>b.onclick=()=>setMode(b.dataset.mode));
-$('testSound').onclick=()=>{audioReady();beep('end');flash()};
+function randomIndex(length) {
+  if (length <= 1) return 0;
+  if (window.crypto && crypto.getRandomValues) {
+    const array = new Uint32Array(1);
+    const limit = Math.floor(4294967296 / length) * length;
+    do { crypto.getRandomValues(array); } while (array[0] >= limit);
+    return array[0] % length;
+  }
+  return Math.floor(Math.random() * length);
+}
+
+/* ===================== SEAT GENERATOR ===================== */
+
+let sMin = 1;
+let sMax = 50;
+let seatHistory = [];
+let seatRedoStack = [];
+let excluded = new Set();
+
+function seatPool() {
+  const pool = [];
+  for (let n = sMin; n <= sMax; n++) {
+    if (excluded.has(n)) continue;
+    if ($('seatNoRepeat').checked && seatHistory.includes(n)) continue;
+    pool.push(n);
+  }
+  return pool;
+}
+
+function renderSet(id, values, emptyText, onRemove, type) {
+  const el = $(id);
+  el.replaceChildren();
+
+  if (!values.length) {
+    const empty = document.createElement('span');
+    empty.className = 'empty';
+    empty.textContent = emptyText;
+    el.append(empty);
+    return;
+  }
+
+  values.forEach(value => {
+    const chip = document.createElement('span');
+    chip.className = 'chip';
+
+    const label = document.createElement('span');
+    label.textContent = type === 'called' ? '#' + value : value;
+    chip.append(label);
+
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.textContent = type === 'called' ? '×' : '↶';
+    button.title = type === 'called'
+      ? 'Remove from history and return seat to the random pool'
+      : 'Restore seat to the available pool';
+    button.setAttribute('aria-label', button.title);
+    button.onclick = () => onRemove(value);
+
+    chip.append(button);
+    el.append(chip);
+  });
+}
+
+function renderSeats() {
+  const pool = seatPool();
+  $('seatTotal').textContent = sMax - sMin + 1;
+  $('seatAvailable').textContent = pool.length;
+  $('seatCalled').textContent = seatHistory.length;
+  $('undoSeat').disabled = !seatHistory.length;
+  $('redoSeat').disabled = !seatRedoStack.length;
+  $('seatStatus').textContent = pool.length ? 'Ready to draw' : 'No eligible seats';
+
+  renderSet(
+    'excludedSeats',
+    [...excluded].filter(n => n >= sMin && n <= sMax).sort((a,b) => a-b),
+    'No seats removed.',
+    n => {
+      excluded.delete(n);
+      renderSeats();
+      toast('Seat ' + n + ' restored.');
+    },
+    'excluded'
+  );
+
+  renderSet(
+    'seatHistory',
+    seatHistory.slice().reverse(),
+    'No seats drawn yet.',
+    n => {
+      // Remove only the latest matching draw from the history.
+      const index = seatHistory.lastIndexOf(n);
+      if (index !== -1) seatHistory.splice(index, 1);
+
+      // It must no longer be excluded or blocked by no-repeat history.
+      excluded.delete(n);
+      seatRedoStack = [];
+
+      $('seatDisplay').textContent = '—';
+      $('seatHint').textContent = 'Seat ' + n + ' returned to the available pool.';
+      renderSeats();
+      toast('Seat ' + n + ' returned to the random draw pool.');
+    },
+    'called'
+  );
+}
+
+$('drawSeat').onclick = () => {
+  const pool = seatPool();
+  if (!pool.length) return toast('No available seats. Restore a seat or change the range.');
+
+  const number = pool[randomIndex(pool.length)];
+  seatRedoStack = [];
+  seatHistory.push(number);
+  $('seatDisplay').textContent = number;
+  $('seatHint').textContent = 'Seat ' + number + ' — let’s hear it for our next speaker!';
+  renderSeats();
+};
+
+$('clearSeat').onclick = () => {
+  $('seatDisplay').textContent = '—';
+  $('seatHint').textContent = 'Display cleared. The seat remains selected.';
+};
+
+$('undoSeat').onclick = () => {
+  if (!seatHistory.length) return toast('There is no seat selection to undo.');
+  const number = seatHistory.pop();
+  seatRedoStack.push(number);
+  $('seatDisplay').textContent = '—';
+  $('seatHint').textContent = 'Seat ' + number + ' returned to the available pool.';
+  renderSeats();
+  toast('Seat ' + number + ' returned to the pool.');
+};
+
+$('redoSeat').onclick = () => {
+  if (!seatRedoStack.length) return toast('There is no seat selection to redo.');
+  const number = seatRedoStack.pop();
+
+  if (number < sMin || number > sMax || excluded.has(number) ||
+      ($('seatNoRepeat').checked && seatHistory.includes(number))) {
+    renderSeats();
+    return toast('That seat is no longer eligible to redo.');
+  }
+
+  seatHistory.push(number);
+  $('seatDisplay').textContent = number;
+  $('seatHint').textContent = 'Seat ' + number + ' — selection restored.';
+  renderSeats();
+  toast('Seat selection restored.');
+};
+
+$('applySeats').onclick = () => {
+  const minValue = $('seatMin').value;
+  const maxValue = $('seatMax').value;
+  const min = Number(minValue);
+  const max = Number(maxValue);
+
+  if (minValue === '' || maxValue === '' ||
+      !Number.isInteger(min) || !Number.isInteger(max) ||
+      min > max || max - min > 9999) {
+    return toast('Enter a valid range of up to 10,000 numbers.');
+  }
+
+  sMin = min;
+  sMax = max;
+  seatHistory = seatHistory.filter(n => n >= sMin && n <= sMax);
+  seatRedoStack = seatRedoStack.filter(n => n >= sMin && n <= sMax);
+  excluded = new Set([...excluded].filter(n => n >= sMin && n <= sMax));
+
+  $('seatDisplay').textContent = '—';
+  $('seatHint').textContent = 'Range updated. Ready to draw.';
+  renderSeats();
+  toast('Seat range updated.');
+};
+
+$('resetSeats').onclick = () => {
+  if (seatHistory.length && !confirm('Reset the seat round? Manually removed seats will remain removed.')) return;
+  seatHistory = [];
+  seatRedoStack = [];
+  $('seatDisplay').textContent = '—';
+  $('seatHint').textContent = 'Round reset. Ready for a fresh draw.';
+  renderSeats();
+  toast('Seat history reset.');
+};
+
+$('excludeSeat').onclick = () => {
+  const input = $('excludeSeatInput');
+  const number = Number(input.value);
+
+  if (input.value.trim() === '' || !Number.isInteger(number) ||
+      number < sMin || number > sMax) {
+    return toast('Enter a seat number within the current range.');
+  }
+  if (excluded.has(number)) return toast('That seat is already removed.');
+
+  excluded.add(number);
+  seatRedoStack = seatRedoStack.filter(n => n !== number);
+  input.value = '';
+  renderSeats();
+  toast('Seat ' + number + ' removed from future draws.');
+};
+
+$('excludeSeatInput').onkeydown = event => {
+  if (event.key === 'Enter') $('excludeSeat').click();
+};
+$('seatNoRepeat').onchange = renderSeats;
+renderSeats();
+
+/* ===================== TOPIC GENERATOR ===================== */
+
+let topics = [
+  "Does pineapple belong on pizza?",
+  "Are we too nonchalant?",
+  "Will AI overthrow us in the future?",
+  "Should doctors and healthcare workers be paid more than professional athletes?",
+  "Would immortality be a curse rather than a blessing?",
+  "Is Spider-Man the greatest piece of fiction ever created?",
+  "Is nostalgia poisoning modern culture?",
+  "Will humans fall in love with AI companions instead of seeking real connections?",
+  "Is documenting your life through Instagram Stories performative?",
+  "Does free will really exist?",
+  "Vampires",
+  "Werewolves",
+  "Goosebumps",
+  "Nostalgia",
+  "Why do we trust AI?",
+  "The internet never forgets.",
+  "Gen Z",
+  "Cringe",
+  "First Aid",
+  "VIT",
+  "Camera Glasses and Privacy",
+  "Cinema and Consequences",
+  "Confidence vs Competence",
+  "Search History Judgments",
+  "Is Luck More Than Chance?",
+  "Are We Losing Our Attention Spans?",
+  "Can Memes Change Society?",
+  "Is Being Average Underrated?",
+  "Are First Impressions Always Right?",
+  "Can We Live Without Lies?",
+  "Are Villains Better Than Heroes?",
+  "Team Cap vs. Team Iron Man",
+  "Would You Rather Read Minds or See the Future?",
+  "Can Money Actually Buy Happiness?",
+  "Is Soup Just Savoury Juice?",
+  "Main Character or Fan-Favourite Sidekick?",
+  "Is Ignorance Truly Bliss?",
+  "Is Chronically Online a Personality Trait?",
+  "Mysterious or Just Bad at Communicating?",
+  "Does a Straw Have One Hole or Two?",
+  "Esports vs Traditional Sports",
+  "The Rise of Influencers: Can Anyone Become Famous?",
+  "Cancel Culture: Accountability or Online Bullying?",
+  "Luxury Brands: Quality or Just a Logo?",
+  "The Dark Side of Reality TV",
+  "The Reality of Get Rich Quick Schemes",
+  "The Art of Procrastination",
+  "Android vs iPhone",
+  "The Joy of Doing Nothing",
+  "The Fear of Missing Out (FOMO)",
+  "An All-Nighter Before an Exam Does More Harm Than Good",
+  "Texting Is Better Than Calling",
+  "The Snooze Button Is a Trap Disguised as a Friend",
+  "Group Study Sessions Are Just Glorified Hangouts Where Nothing Gets Done",
+  "Failure Is a Better Teacher Than Success",
+  "Grades Do Not Define Your Intelligence",
+  "Dogs Make Better Pets Than Cats",
+  "Is Delusion the Key to Success?",
+  "Fame vs Genuine Respect",
+  "Are We Living or Posting?",
+  "Is College More Than a Degree?",
+  "Would You Want to Know Your Future?",
+  "Is Ghosting Ever Justified?",
+  "Passion vs Money",
+  "Do We Have Too Many Choices?",
+  "Smartest Person or Most Interesting?"
+];
+
+let usedTopics = new Set();
+let topicHistory = [];
+let topicRedoStack = [];
+
+function renderTopicChips(id, values, emptyText, isUsed) {
+  const el = $(id);
+  el.replaceChildren();
+
+  if (!values.length) {
+    const empty = document.createElement('span');
+    empty.className = 'empty';
+    empty.textContent = emptyText;
+    el.append(empty);
+    return;
+  }
+
+  values.forEach(topic => {
+    const chip = document.createElement('span');
+    chip.className = 'chip';
+
+    const label = document.createElement('span');
+    label.textContent = topic;
+    chip.append(label);
+
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.textContent = isUsed ? '↶' : '×';
+    button.title = isUsed
+      ? 'Remove from history and make topic available again'
+      : 'Remove topic from the topic list';
+    button.setAttribute('aria-label', button.title);
+
+    button.onclick = () => {
+      if (isUsed) {
+        // Remove it from used topics AND history, so it can be drawn again.
+        usedTopics.delete(topic);
+        const index = topicHistory.lastIndexOf(topic);
+        if (index !== -1) topicHistory.splice(index, 1);
+        topicRedoStack = [];
+
+        $('topicDisplay').textContent = '—';
+        $('topicHint').textContent = 'Topic returned to the available topic pool.';
+        toast('Topic returned to the random topic pool.');
+      } else {
+        topics = topics.filter(t => t !== topic);
+        usedTopics.delete(topic);
+        topicHistory = topicHistory.filter(t => t !== topic);
+        topicRedoStack = topicRedoStack.filter(t => t !== topic);
+        toast('Topic removed from the list.');
+      }
+
+      renderTopics();
+    };
+
+    chip.append(button);
+    el.append(chip);
+  });
+}
+
+function renderTopics() {
+  const available = topics.filter(topic => !usedTopics.has(topic));
+
+  $('topicTotal').textContent = topics.length;
+  $('topicRemaining').textContent = available.length;
+  $('topicUsed').textContent = usedTopics.size;
+  $('topicUndoPlaceholder');
+  $('undoTopic').disabled = !topicHistory.length;
+  $('redoTopic').disabled = !topicRedoStack.length;
+  $('topicStatus').textContent = available.length + ' remaining';
+  $('drawTopic').disabled = !available.length;
+
+  renderTopicChips('availableTopics', available, 'No available topics.', false);
+  renderTopicChips('usedTopics', topics.filter(t => usedTopics.has(t)), 'No topics drawn yet.', true);
+}
+
+$('addTopics').onclick = () => {
+  const lines = $('topicInput').value.split(/\r?\n/).map(t => t.trim()).filter(Boolean);
+  let added = 0;
+
+  for (const topic of lines) {
+    if (!topics.includes(topic)) {
+      topics.push(topic);
+      added++;
+    }
+  }
+
+  $('topicInput').value = '';
+  renderTopics();
+  toast(added ? added + ' topic(s) added.' : 'No new topics to add.');
+};
+
+$('clearTopicInput').onclick = () => $('topicInput').value = '';
+
+$('drawTopic').onclick = () => {
+  const available = topics.filter(topic => !usedTopics.has(topic));
+  if (!available.length) return toast('No available topics. Restore a topic or reset the list.');
+
+  const topic = available[randomIndex(available.length)];
+  topicRedoStack = [];
+  usedTopics.add(topic);
+  topicHistory.push(topic);
+
+  $('topicDisplay').textContent = topic;
+  $('topicHint').textContent = 'Topic selected. Research time starts when you’re ready.';
+  renderTopics();
+};
+
+$('clearTopic').onclick = () => {
+  $('topicDisplay').textContent = '—';
+  $('topicHint').textContent = 'Display cleared. The topic remains selected in history.';
+};
+
+$('undoTopic').onclick = () => {
+  if (!topicHistory.length) return toast('There is no topic selection to undo.');
+
+  const topic = topicHistory.pop();
+  topicRedoStack.push(topic);
+  usedTopics.delete(topic);
+
+  $('topicDisplay').textContent = '—';
+  $('topicHint').textContent = 'Topic returned to the available pool.';
+  renderTopics();
+  toast('Topic returned to the pool.');
+};
+
+$('redoTopic').onclick = () => {
+  if (!topicRedoStack.length) return toast('There is no topic selection to redo.');
+
+  const topic = topicRedoStack.pop();
+  if (!topics.includes(topic) || usedTopics.has(topic)) {
+    renderTopics();
+    return toast('That topic is no longer available to redo.');
+  }
+
+  usedTopics.add(topic);
+  topicHistory.push(topic);
+  $('topicDisplay').textContent = topic;
+  $('topicHint').textContent = 'Topic selection restored.';
+  renderTopics();
+  toast('Topic selection restored.');
+};
+
+$('resetTopics').onclick = () => {
+  if (usedTopics.size && !confirm('Make all topics available again?')) return;
+
+  usedTopics.clear();
+  topicHistory = [];
+  topicRedoStack = [];
+  $('topicDisplay').textContent = 'Ready when you are.';
+  $('topicHint').textContent = 'Topics reset. Draw a new topic.';
+  renderTopics();
+  toast('All topics are available again.');
+};
+
+renderTopics();
+
+/* ===================== SPEECH / DEBATE TIMER ===================== */
+
+let mode = 'speech1';
+let duration = 60;
+let remaining = 60;
+let elapsed = 0;
+let interval = null;
+let running = false;
+let finished = false;
+let lastBoundary = 0;
+let audioCtx = null;
+
+const modeNames = {
+  speech1:'One-minute speech',
+  speech2:'Two-minute speech',
+  debate:'Debate · 4 × 30 seconds'
+};
+
+function audioReady() {
+  try {
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContextClass) return null;
+    if (!audioCtx) audioCtx = new AudioContextClass();
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+    return audioCtx;
+  } catch (error) {
+    return null;
+  }
+}
+
+function beep(kind = 'alert') {
+  if (!$('soundToggle').checked) return;
+  const ctx = audioReady();
+  if (!ctx) return;
+
+  const now = ctx.currentTime;
+  const patterns = kind === 'tick'
+    ? [[660,0,.12]]
+    : kind === 'end'
+      ? [[880,0,.18],[660,.22,.18],[880,.44,.3]]
+      : [[740,0,.12],[880,.17,.16]];
+
+  patterns.forEach(([frequency, offset, length]) => {
+    const oscillator = ctx.createOscillator();
+    const gain = ctx.createGain();
+    oscillator.type = 'sine';
+    oscillator.frequency.value = frequency;
+    gain.gain.setValueAtTime(.0001, now + offset);
+    gain.gain.exponentialRampToValueAtTime(.18, now + offset + .015);
+    gain.gain.exponentialRampToValueAtTime(.0001, now + offset + length);
+    oscillator.connect(gain);
+    gain.connect(ctx.destination);
+    oscillator.start(now + offset);
+    oscillator.stop(now + offset + length + .02);
+  });
+}
+
+function flash() {
+  if (!$('flashToggle').checked) return;
+  const el = $('timerDisplay');
+  el.classList.remove('alert');
+  void el.offsetWidth;
+  el.classList.add('alert');
+  setTimeout(() => el.classList.remove('alert'), 1400);
+}
+
+function formatTime(seconds) {
+  seconds = Math.max(0, Math.ceil(seconds));
+  return String(Math.floor(seconds / 60)).padStart(2, '0') + ':' +
+         String(seconds % 60).padStart(2, '0');
+}
+
+function stopTimer() {
+  if (interval !== null) {
+    clearInterval(interval);
+    interval = null;
+  }
+  running = false;
+  $('pauseTimer').disabled = true;
+}
+
+function renderTimer() {
+  $('timeDisplay').textContent = formatTime(remaining);
+
+  if (mode === 'debate') {
+    const completed = Math.min(4, Math.floor(elapsed / 30));
+    const current = Math.min(3, Math.floor(elapsed / 30));
+
+    document.querySelectorAll('.segment').forEach((segment, index) => {
+      segment.classList.toggle('current', running && index === current);
+      segment.classList.toggle('done-segment', index < completed || finished);
+    });
+
+    const speaker = Math.min(4, Math.floor(elapsed / 30) + 1);
+    $('turnIndicator').textContent = finished
+      ? 'DEBATE COMPLETE'
+      : (elapsed > 0 || running ? 'TURN ' + speaker + ' OF 4' : '4 SPEAKERS · 30 SECONDS EACH');
+  } else {
+    $('turnIndicator').textContent = '';
+  }
+}
+
+function setMode(nextMode) {
+  stopTimer();
+  mode = nextMode;
+  duration = mode === 'speech1' ? 60 : 120;
+  remaining = duration;
+  elapsed = 0;
+  finished = false;
+  lastBoundary = 0;
+
+  document.querySelectorAll('.mode-tab').forEach(button => {
+    button.classList.toggle('active', button.dataset.mode === mode);
+  });
+
+  $('timerLabel').textContent = modeNames[mode];
+  $('timerDescription').textContent =
+    mode === 'speech1'
+      ? 'A one-minute countdown. A sound and red visual alert signal the end.'
+      : mode === 'speech2'
+        ? 'A two-minute countdown. A sound and red visual alert signal the end.'
+        : 'A two-minute debate split into four 30-second turns, with a sound and visual alert at each handoff.';
+
+  $('debateInstructions').hidden = mode !== 'debate';
+  $('segments').hidden = mode !== 'debate';
+  $('timerDisplay').classList.remove('done', 'alert');
+  $('timerStatus').textContent = 'Ready';
+  $('timerState').textContent = 'Ready to start';
+  $('startTimer').disabled = false;
+  $('startTimer').textContent = '▶ START';
+  renderTimer();
+}
+
+$('startTimer').onclick = () => {
+  if (running || finished) return;
+
+  audioReady();
+  running = true;
+  $('timerStatus').textContent = 'Running';
+  $('timerState').textContent = 'Timer running';
+  $('startTimer').disabled = true;
+  $('startTimer').textContent = '▶ RUNNING';
+  $('pauseTimer').disabled = false;
+
+  let last = performance.now();
+
+  interval = setInterval(() => {
+    if (!running) return;
+
+    const now = performance.now();
+    const delta = (now - last) / 1000;
+    last = now;
+
+    elapsed = Math.min(duration, elapsed + delta);
+    remaining = Math.max(0, duration - elapsed);
+
+    if (mode === 'debate') {
+      const boundary = Math.floor(elapsed / 30);
+
+      if (boundary > lastBoundary) {
+        lastBoundary = boundary;
+        beep(elapsed >= duration ? 'end' : 'tick');
+        flash();
+
+        if (elapsed < duration) {
+          $('timerState').textContent = 'Switch speakers now';
+          toast('30 seconds up — speaker ' + (boundary + 1) + ' starts now.');
+        }
+      }
+    }
+
+    if (remaining <= 0) {
+      remaining = 0;
+      elapsed = duration;
+      finished = true;
+      stopTimer();
+
+      $('timerStatus').textContent = 'Time is up';
+      $('timerState').textContent = 'TIME IS UP';
+      $('timerDisplay').classList.add('done');
+      $('startTimer').disabled = true;
+      $('startTimer').textContent = '✓ COMPLETE';
+
+      if (mode !== 'debate' || lastBoundary < 4) {
+        beep('end');
+        flash();
+      }
+
+      if (mode === 'debate') $('turnIndicator').textContent = 'DEBATE COMPLETE';
+      toast('Time is up!');
+    }
+
+    renderTimer();
+  }, 100);
+};
+
+$('pauseTimer').onclick = () => {
+  if (!running) return;
+  stopTimer();
+  $('timerStatus').textContent = 'Paused';
+  $('timerState').textContent = 'Paused';
+  $('startTimer').disabled = false;
+  $('startTimer').textContent = '▶ RESUME';
+};
+
+$('resetTimer').onclick = () => {
+  stopTimer();
+  remaining = duration;
+  elapsed = 0;
+  finished = false;
+  lastBoundary = 0;
+  $('timerDisplay').classList.remove('done', 'alert');
+  $('timerStatus').textContent = 'Ready';
+  $('timerState').textContent = 'Ready to start';
+  $('startTimer').disabled = false;
+  $('startTimer').textContent = '▶ START';
+  renderTimer();
+};
+
+document.querySelectorAll('.mode-tab').forEach(button => {
+  button.onclick = () => setMode(button.dataset.mode);
+});
+
+$('testSound').onclick = () => {
+  audioReady();
+  beep('end');
+  flash();
+};
+
 setMode('speech1');
+
 })();
-</script></body></html>
+</script>
+</body>
+</html>
