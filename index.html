@@ -2,390 +2,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#090909">
-<title>OFF-the-CUFF | Number Draw</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#080808">
+<title>OFF-the-CUFF</title>
 <style>
-:root {
-  --bg:#090909; --panel:#121212; --panel2:#191919;
-  --line:#303030; --text:#f6f6f6; --muted:#a6a6a6;
-  --red:#eb1c24; --green:#7ee0ad; --amber:#ffd37a;
-}
-*{box-sizing:border-box}
-body{
-  margin:0;min-height:100vh;color:var(--text);
-  background:radial-gradient(ellipse at 80% 0%,rgba(235,28,36,.13),transparent 36%),
-  radial-gradient(ellipse at 0% 90%,rgba(235,28,36,.07),transparent 35%),var(--bg);
-  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif
-}
-button,input{font:inherit}
-button{cursor:pointer}
-.shell{max-width:1180px;padding:28px 22px 42px;margin:auto}
-.topbar{display:flex;align-items:center;justify-content:space-between;gap:18px;padding-bottom:22px;border-bottom:1px solid var(--line)}
-.brand{display:flex;align-items:center;min-width:0}
-.wordmark{display:flex;align-items:center;white-space:nowrap;line-height:1}
-.tedx{color:#eb0028;font-family:Arial Black,Arial,sans-serif;font-weight:1000;font-size:clamp(34px,5vw,52px);letter-spacing:-.09em;-webkit-text-stroke:1px #eb0028}
-.wordmark sup{color:#eb0028;font-family:Arial Black,Arial,sans-serif;font-weight:1000;font-size:clamp(19px,2.5vw,29px);letter-spacing:-.08em;margin:0 9px 0 3px;transform:translateY(-.25em)}
-.vit{color:white;font-family:Arial,Helvetica,sans-serif;font-weight:300;font-size:clamp(25px,3.8vw,43px);letter-spacing:-.055em}
-.event-tag{border:1px solid #333;color:#eee;background:#ffffff06;border-radius:999px;padding:8px 12px;font-size:12px;font-weight:700;white-space:nowrap}
-.eyebrow{color:var(--red);text-transform:uppercase;font-size:11px;font-weight:900;letter-spacing:.22em}
-.intro{padding:24px 0 18px}
-h1{margin:8px 0 10px;font-size:clamp(34px,6vw,60px);letter-spacing:-.06em;line-height:.98}
-h1 span{color:var(--red)}
-.sub{color:var(--muted);margin:0;max-width:650px;line-height:1.6;font-size:14px}
-.layout{display:grid;grid-template-columns:minmax(0,1fr);gap:16px;align-items:start}
-.panel{background:#121212eb;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 18px 60px #0003}
-.panel-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 20px;border-bottom:1px solid var(--line)}
-.panel-head h2{margin:0;font-size:13px;letter-spacing:.12em;text-transform:uppercase}
-.status{display:flex;align-items:center;gap:7px;color:var(--muted);font-size:11px}
-.dot{width:7px;height:7px;background:var(--green);border-radius:50%;box-shadow:0 0 10px #7ee0ad66}
-.draw-body{padding:24px}
-.number-stage{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:390px;padding:24px;border:1px solid #392022;border-radius:14px;background:radial-gradient(ellipse at 50% 55%,#eb1c2429,transparent 58%),linear-gradient(135deg,#171313,#0d0d0d 65%);overflow:hidden}
-.number-stage:before,.number-stage:after{content:"";position:absolute;width:160px;height:1px;background:linear-gradient(90deg,transparent,var(--red),transparent);opacity:.7}
-.number-stage:before{top:22px;left:-20px;transform:rotate(-35deg)}
-.number-stage:after{right:-20px;bottom:22px;transform:rotate(-35deg)}
-.stage-label{color:var(--muted);text-transform:uppercase;font-size:10px;letter-spacing:.25em;font-weight:800}
-.number{font-size:clamp(130px,24vw,230px);font-weight:950;letter-spacing:-.09em;line-height:1.12;margin:5px 0 8px;text-shadow:0 0 45px #eb1c2426;overflow-wrap:anywhere}
-.number.has-value{animation:pop .42s cubic-bezier(.2,.8,.2,1)}
-@keyframes pop{0%{transform:scale(.72);opacity:.25;filter:blur(5px)}70%{transform:scale(1.04);opacity:1;filter:blur(0)}100%{transform:scale(1)}}
-.stage-hint{color:var(--muted);font-size:12px;text-align:center}
-.draw-actions{display:grid;grid-template-columns:1fr auto;gap:10px;margin-top:15px}
-.btn{border:1px solid var(--line);color:var(--text);background:var(--panel2);border-radius:10px;padding:13px 16px;font-weight:800;font-size:13px;transition:transform .15s,border-color .15s,background .15s}
-.btn:hover{border-color:#666;transform:translateY(-1px)}
-.btn:active{transform:translateY(0)}
-.btn-primary{color:white;background:var(--red);border-color:var(--red);box-shadow:0 8px 24px #eb1c242e}
-.btn-primary:hover{background:#ff2a32;border-color:#ff2a32}
-.btn:disabled{opacity:.42;cursor:not-allowed;transform:none}
-.small-btn{padding:7px 10px;font-size:11px;border-radius:8px}
-.side{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;opacity:.86}
-.settings,.manage{padding:15px 17px 16px}
-.field-label{display:block;color:var(--muted);font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
-.range-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-input[type=number],input[type=text]{width:100%;min-width:0;background:#090909;color:var(--text);border:1px solid #393939;border-radius:9px;padding:11px 12px;outline:none}
-input:focus{border-color:var(--red);box-shadow:0 0 0 3px #eb1c241a}
-.apply-row{display:flex;gap:9px;margin-top:12px}
-.apply-row .btn{flex:1}
-.toggle-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:18px;padding-top:17px;border-top:1px solid var(--line)}
-.toggle-copy strong{display:block;font-size:13px;margin-bottom:4px}
-.toggle-copy span{display:block;color:var(--muted);font-size:11px;line-height:1.4}
-.switch{position:relative;width:44px;height:25px;flex:0 0 auto}
-.switch input{opacity:0;width:0;height:0}
-.slider{position:absolute;inset:0;background:#393939;border-radius:99px;transition:.2s}
-.slider:before{content:"";position:absolute;height:19px;width:19px;left:3px;top:3px;background:white;border-radius:50%;transition:.2s}
-.switch input:checked+.slider{background:var(--red)}
-.switch input:checked+.slider:before{transform:translateX(19px)}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:0 20px 20px}
-.stat{padding:12px 10px;background:#0b0b0b;border:1px solid #262626;border-radius:10px}
-.stat strong{display:block;font-size:22px;letter-spacing:-.04em}
-.stat span{color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.08em}
-.manage-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px}
-.help{color:var(--muted);font-size:11px;line-height:1.5;margin:9px 0 0}
-.number-list{display:flex;flex-wrap:wrap;gap:7px;margin-top:13px}
-.pill{display:inline-flex;align-items:center;gap:7px;border:1px solid #3a3a3a;border-radius:8px;padding:6px 8px;font-size:12px;background:#0b0b0b}
-.pill button{background:none;color:var(--muted);border:0;font-size:15px;line-height:1;padding:0 1px}
-.pill button:hover{color:white}
-.pill.called{border-color:#603033;color:#ffb6b9;background:#eb1c2412}
-.pill.excluded{border-color:#5b4b2d;color:var(--amber)}
-.section-label{color:var(--muted);font-size:10px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;margin-top:17px}
-.empty{color:#777;font-size:12px;padding:7px 0 0}
-.history-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
-.foot{color:#777;font-size:10px;line-height:1.5;margin-top:22px;text-align:center}
-.toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#f4f4f4;color:#111;border-radius:10px;padding:11px 15px;font-size:12px;font-weight:800;box-shadow:0 10px 35px #0008;transition:.22s;z-index:10;max-width:calc(100vw - 30px)}
-.toast.show{transform:translate(-50%,0);opacity:1}
-@media(max-width:820px){.layout{grid-template-columns:1fr}.side{grid-template-columns:1fr}.number-stage{min-height:320px}.number{font-size:clamp(115px,28vw,190px)}}
-@media(max-width:480px){.shell{padding:18px 13px 30px}.event-tag{font-size:10px;padding:7px 8px}.topbar{align-items:flex-start}.tedx{font-size:clamp(27px,7vw,34px)}.wordmark sup{font-size:clamp(15px,4vw,20px);margin-right:5px}.vit{font-size:clamp(22px,6vw,31px)}.draw-body{padding:14px}.panel-head{padding:15px}.settings,.manage{padding:16px}.stats{padding:0 16px 16px}.stat strong{font-size:19px}.draw-actions{grid-template-columns:1fr}.number-stage{min-height:250px}}
-</style>
-</head>
-<body>
-<div class="shell">
-<header class="topbar">
-  <div class="brand" aria-label="TEDx VIT Vellore">
-    <div class="wordmark"><span class="tedx">TED</span><sup>x</sup><span class="vit">VITVellore</span></div>
-  </div>
-  <div class="event-tag">OFF-the-CUFF</div>
-</header>
+:root{--bg:#080808;--panel:#111;--panel2:#171717;--line:#303030;--text:#f5f5f5;--muted:#a1a1a1;--red:#eb0028;--red2:#ff2638;--green:#7ee0ad;--amber:#ffd37a}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 80% 0%,#eb002817,transparent 35%),radial-gradient(ellipse at 0% 80%,#eb00280c,transparent 32%),var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,textarea{font:inherit}button{cursor:pointer}.shell{max-width:1240px;margin:auto;padding:24px 20px 42px}.topbar{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-bottom:20px;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;white-space:nowrap;line-height:1}.ted{font-family:Arial Black,Arial,sans-serif;font-weight:1000;color:var(--red);font-size:clamp(34px,4vw,48px);letter-spacing:-.09em;-webkit-text-stroke:.8px var(--red)}.supx{font-family:Arial Black,Arial,sans-serif;font-size:clamp(19px,2vw,28px);font-weight:1000;color:var(--red);letter-spacing:-.08em;margin:0 8px 0 3px;transform:translateY(-.25em)}.vit{font-family:Arial,Helvetica,sans-serif;font-weight:300;font-size:clamp(25px,3.2vw,39px);letter-spacing:-.055em}.event-tag{border:1px solid #383838;background:#ffffff05;padding:8px 12px;border-radius:99px;font-size:12px;font-weight:800;white-space:nowrap}.intro{padding:23px 0 20px}.eyebrow{font-size:11px;letter-spacing:.23em;text-transform:uppercase;color:var(--red);font-weight:900}h1{font-size:clamp(34px,5vw,58px);line-height:1;letter-spacing:-.06em;margin:9px 0}.intro p{color:var(--muted);font-size:14px;line-height:1.6;margin:0;max-width:760px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}.panel{border:1px solid var(--line);background:#111111ed;border-radius:16px;overflow:hidden;min-width:0}.panel-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:16px 18px;border-bottom:1px solid var(--line)}.panel-head h2{font-size:12px;letter-spacing:.15em;text-transform:uppercase;margin:0}.subtle{color:var(--muted);font-size:11px}.body{padding:18px}.display{min-height:205px;border:1px solid #4b2025;border-radius:12px;background:radial-gradient(ellipse at center,#eb00281b,transparent 68%),#0b0b0b;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:18px;position:relative;overflow:hidden}.display-label{font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);font-weight:800}.big-number{font-size:clamp(90px,13vw,150px);font-weight:950;letter-spacing:-.09em;line-height:1.15;overflow-wrap:anywhere}.topic-result{font-size:clamp(22px,3vw,36px);font-weight:800;line-height:1.2;max-width:650px;margin:14px 0 4px}.hint{font-size:11px;color:var(--muted);line-height:1.5;margin-top:7px}.btn{border:1px solid var(--line);background:var(--panel2);color:var(--text);padding:11px 14px;border-radius:9px;font-size:12px;font-weight:800;transition:.15s}.btn:hover{border-color:#777;transform:translateY(-1px)}.btn:disabled{opacity:.4;cursor:not-allowed;transform:none}.primary{background:var(--red);border-color:var(--red);color:white}.primary:hover{background:var(--red2);border-color:var(--red2)}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}.actions .primary{flex:1}.fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field label,.field-label{display:block;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:800;margin-bottom:7px}input[type=number],input[type=text],textarea{width:100%;min-width:0;background:#090909;color:var(--text);border:1px solid #393939;border-radius:8px;padding:11px 12px;outline:none}textarea{resize:vertical;min-height:100px;line-height:1.5}input:focus,textarea:focus{border-color:var(--red);box-shadow:0 0 0 3px #eb002817}.toggleline{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:14px;margin-top:14px;border-top:1px solid var(--line)}.switch{position:relative;width:42px;height:24px;flex-shrink:0}.switch input{opacity:0;width:0;height:0}.slider{position:absolute;inset:0;background:#444;border-radius:99px;transition:.2s}.slider:before{content:"";position:absolute;width:18px;height:18px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.2s}.switch input:checked+.slider{background:var(--red)}.switch input:checked+.slider:before{transform:translateX(18px)}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}.stat{border:1px solid #292929;background:#0b0b0b;border-radius:9px;padding:10px}.stat strong{font-size:20px;display:block}.stat span{font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}.list{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}.chip{display:inline-flex;align-items:center;gap:6px;padding:6px 8px;border:1px solid #53262a;border-radius:7px;color:#ffc2c5;background:#eb002810;font-size:11px}.chip button{border:0;background:none;color:var(--muted);padding:0 1px;font-size:15px}.chip button:hover{color:white}.empty{font-size:11px;color:#777;padding:6px 0}.section-label{font-size:10px;text-transform:uppercase;letter-spacing:.14em;font-weight:900;color:var(--muted);margin-top:16px}.timer-panel{grid-column:1/-1}.timer-body{padding:20px}.mode-tabs{display:flex;gap:7px;flex-wrap:wrap}.mode-tab{background:#151515;border:1px solid #333;color:#bbb;border-radius:8px;padding:9px 12px;font-size:11px;font-weight:800}.mode-tab.active{background:#eb00281c;border-color:var(--red);color:white}.timer-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(240px,.85fr);gap:16px;margin-top:15px}.timer-display{min-height:250px;border:1px solid #452126;border-radius:13px;background:radial-gradient(ellipse at center,#eb00281a,transparent 65%),#0a0a0a;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden}.timer-display.alert{animation:flash .45s ease-in-out 3;border-color:var(--red)}.timer-display.done{background:radial-gradient(ellipse at center,#eb00284a,transparent 70%),#0a0a0a;border-color:var(--red)}@keyframes flash{0%,100%{box-shadow:inset 0 0 0 0 #eb002800}50%{box-shadow:inset 0 0 0 999px #eb002832}}.time{font-variant-numeric:tabular-nums;font-size:clamp(72px,12vw,120px);font-weight:950;letter-spacing:-.075em;line-height:1.1}.timer-state{font-size:10px;text-transform:uppercase;letter-spacing:.2em;color:var(--muted);margin-top:10px}.turn-indicator{font-size:12px;font-weight:900;color:var(--red);letter-spacing:.12em;text-transform:uppercase;margin-top:10px}.segments{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:12px}.segment{border:1px solid #333;background:#0b0b0b;border-radius:8px;padding:10px 5px;text-align:center;color:#777;font-size:11px}.segment strong{display:block;font-size:17px;color:#bbb;margin-bottom:3px}.segment.current{border-color:var(--red);background:#eb00281a;color:white;box-shadow:0 0 18px #eb00281a}.segment.current strong{color:#ff4855}.segment.done-segment{border-color:#285640;background:#102017;color:var(--green)}.timer-side{border:1px solid #292929;border-radius:12px;padding:15px;background:#0c0c0c}.timer-side h3{font-size:11px;text-transform:uppercase;letter-spacing:.14em;margin:0 0 12px}.timer-side p{font-size:12px;color:var(--muted);line-height:1.6;margin:0 0 12px}.timer-controls{display:flex;gap:8px;flex-wrap:wrap}.timer-controls .primary{flex:1}.sound-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:14px;padding-top:13px;border-top:1px solid #292929;font-size:12px}.status-dot{width:8px;height:8px;background:var(--green);border-radius:50%;display:inline-block;margin-right:7px}.foot{text-align:center;color:#666;font-size:10px;line-height:1.6;margin-top:22px}.toast{position:fixed;bottom:20px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#f4f4f4;color:#111;border-radius:9px;padding:11px 15px;font-size:12px;font-weight:800;transition:.2s;z-index:10}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:760px){.shell{padding:17px 12px 30px}.grid{grid-template-columns:1fr}.timer-panel{grid-column:auto}.timer-grid{grid-template-columns:1fr}.display{min-height:180px}.big-number{font-size:100px}.topbar{align-items:flex-start}.event-tag{font-size:10px;padding:7px 9px}.stats{gap:5px}.stat{padding:8px}.stat strong{font-size:18px}}
+</style></head>
+<body><div class="shell">
+<header class="topbar"><div class="brand" aria-label="TEDx VITVellore"><span class="ted">TED</span><span class="supx">x</span><span class="vit">VITVellore</span></div><div class="event-tag">OFF-the-CUFF</div></header>
 
-<section class="intro">
-  <div class="eyebrow">Think fast. Speak freely.</div>
-  <h1>Who's <span>up next?</span></h1>
-  <p class="sub">A live seat-number randomizer for OFF-the-CUFF. Draw participants, avoid repeats, and keep the room moving.</p>
-</section>
+<div class="grid">
+<section class="panel"><div class="panel-head"><h2>01 / Seat number</h2><span class="subtle" id="seatStatus">Ready to draw</span></div><div class="body"><div class="display"><div class="display-label">Next seat number</div><div class="big-number" id="seatDisplay">—</div><div class="hint" id="seatHint">Draw a participant when you're ready.</div></div><div class="actions"><button class="btn primary" id="drawSeat">↗ DRAW SEAT</button><button class="btn" id="clearSeat">Clear</button><button class="btn" id="undoSeat" disabled>↶ Undo</button><button class="btn" id="redoSeat" disabled>↷ Redo</button><button class="btn" id="resetSeats">↺ Reset</button></div><div class="stats"><div class="stat"><strong id="seatTotal">50</strong><span>In range</span></div><div class="stat"><strong id="seatAvailable">50</strong><span>Available</span></div><div class="stat"><strong id="seatCalled">0</strong><span>Drawn</span></div></div><div class="section-label">Seat range</div><div class="fields" style="margin-top:9px"><div class="field"><label for="seatMin">Minimum</label><input id="seatMin" type="number" value="1"></div><div class="field"><label for="seatMax">Maximum</label><input id="seatMax" type="number" value="50"></div></div><div class="actions"><button class="btn" id="applySeats">Apply range</button></div><div class="toggleline"><div><b style="font-size:12px">No-repeat mode</b><div class="hint">Drawn numbers stay unavailable until reset.</div></div><label class="switch"><input id="seatNoRepeat" type="checkbox" checked><span class="slider"></span></label></div><div class="section-label">Remove absent/unassigned seat</div><div class="actions"><input id="excludeSeatInput" type="number" placeholder="Seat number" style="max-width:170px"><button class="btn" id="excludeSeat">Remove</button></div><div class="list" id="excludedSeats"><span class="empty">No seats removed.</span></div><div class="section-label">Draw history</div><div class="list" id="seatHistory"><span class="empty">No seats drawn yet.</span></div></div></section>
 
-<main class="layout">
-<section class="panel">
-  <div class="panel-head">
-    <h2>Participant draw</h2>
-    <div class="status"><span class="dot"></span><span id="statusText">Ready to draw</span></div>
-  </div>
-  <div class="draw-body">
-    <div class="number-stage" aria-live="polite">
-      <div class="stage-label" id="stageLabel">Next seat number</div>
-      <div class="number" id="numberDisplay">—</div>
-      <div class="stage-hint" id="stageHint">Ready when you are. Draw the next seat.</div>
-    </div>
-    <div class="draw-actions">
-      <button class="btn btn-primary" id="drawBtn">↗ &nbsp; DRAW NEXT NUMBER</button>
-      <button class="btn" id="resetBtn">↺ Reset round</button>
-    </div>
-  </div>
-  <div class="stats">
-    <div class="stat"><strong id="totalStat">50</strong><span>In range</span></div>
-    <div class="stat"><strong id="remainingStat">50</strong><span>Available</span></div>
-    <div class="stat"><strong id="calledStat">0</strong><span>Draws made</span></div>
-  </div>
-</section>
+<section class="panel"><div class="panel-head"><h2>02 / Topic generator</h2><span class="subtle" id="topicStatus">66 topics ready</span></div><div class="body"><div class="display" style="min-height:250px"><div class="display-label">Your topic</div><div class="topic-result" id="topicDisplay">Ready when you are.</div><div class="hint" id="topicHint">Choose a topic at random. Each topic is used once until you reset the list.</div></div><div class="actions"><button class="btn primary" id="drawTopic">✦ DRAW TOPIC</button><button class="btn" id="clearTopic">Clear</button><button class="btn" id="undoTopic" disabled>↶ Undo</button><button class="btn" id="redoTopic" disabled>↷ Redo</button><button class="btn" id="resetTopics">↺ Reset topics</button></div><div class="stats"><div class="stat"><strong id="topicTotal">66</strong><span>Total topics</span></div><div class="stat"><strong id="topicRemaining">66</strong><span>Remaining</span></div><div class="stat"><strong id="topicUsed">0</strong><span>Used</span></div></div><div id="topicManagement" hidden><div class="section-label">Add topics (one per line)</div><textarea id="topicInput" placeholder="Paste your topics here, one topic per line.&#10;&#10;Example:&#10;Is social media doing more harm than good?&#10;Failure is the best teacher.&#10;Should attendance be compulsory?"></textarea><div class="actions"><button class="btn primary" id="addTopics">Add topics</button><button class="btn" id="clearTopicInput">Clear box</button></div><div class="section-label">Available topics</div><div class="list" id="availableTopics"><span class="empty">Loading topics…</span></div><div class="section-label">Used topics</div><div class="list" id="usedTopics"><span class="empty">No topics drawn yet.</span></div></div></div></section>
 
-<aside class="side">
-<section class="panel">
-  <div class="panel-head"><h2>Draw settings</h2></div>
-  <div class="settings">
-    <div class="range-fields">
-      <div><label class="field-label" for="minNum">Minimum</label><input id="minNum" type="number" value="1" min="-999999" max="999999"></div>
-      <div><label class="field-label" for="maxNum">Maximum</label><input id="maxNum" type="number" value="50" min="-999999" max="999999"></div>
-    </div>
-    <div class="apply-row"><button class="btn btn-primary" id="applyRangeBtn">Apply range</button></div>
-    <div class="toggle-row">
-      <div class="toggle-copy"><strong>No-repeat mode</strong><span>Each number can be drawn only once per round.</span></div>
-      <label class="switch" aria-label="Toggle no-repeat mode"><input type="checkbox" id="noRepeat" checked><span class="slider"></span></label>
-    </div>
-    <p class="help" id="modeHelp">ON: drawn numbers are automatically unavailable until you reset the round.</p>
-  </div>
-</section>
-
-<section class="panel">
-  <div class="panel-head"><h2>Manage seats</h2></div>
-  <div class="manage">
-    <label class="field-label" for="removeNum">Remove a seat number</label>
-    <div class="manage-row"><input id="removeNum" type="number" placeholder="e.g. 12"><button class="btn" id="removeBtn">Remove</button></div>
-    <p class="help">Use this for absent participants or unassigned seats. Removed numbers won't be drawn. You can restore them below.</p>
-    <div class="section-label">Removed numbers</div>
-    <div class="number-list" id="excludedList"><div class="empty">No seats removed.</div></div>
-  </div>
-</section>
-</aside>
-</main>
-
-<section class="panel" style="margin-top:18px">
-  <div class="panel-head history-head"><h2>Draw history</h2><button class="btn small-btn" id="clearHistoryBtn">Clear history</button></div>
-  <div class="manage">
-    <p class="help" style="margin-top:0">Numbers appear here in the order they were drawn. In no-repeat mode, clearing visible history does not make those numbers available again. Use Reset round to start fresh.</p>
-    <div class="number-list" id="historyList"><div class="empty">No numbers drawn yet.</div></div>
-  </div>
-</section>
-
-<div class="foot">OFF-the-CUFF · TEDxVITVellore-inspired host tool<br>This page runs locally in your browser. No account or server required.</div>
-</div>
-<div class="toast" id="toast" role="status"></div>
+<section class="panel timer-panel"><div class="panel-head"><h2>03 / Speech timer</h2><span class="subtle"><span class="status-dot"></span><span id="timerStatus">Ready</span></span></div><div class="timer-body"><div class="mode-tabs"><button class="mode-tab active" data-mode="speech1">1-minute speech</button><button class="mode-tab" data-mode="speech2">2-minute speech</button><button class="mode-tab" data-mode="debate">Debate · 4 × 30 sec</button></div><div class="timer-grid"><div><div class="timer-display" id="timerDisplay"><div class="display-label" id="timerLabel">One-minute speech</div><div class="time" id="timeDisplay">01:00</div><div class="timer-state" id="timerState">Ready to start</div><div class="turn-indicator" id="turnIndicator"></div></div><div class="segments" id="segments" hidden><div class="segment" data-segment="0"><strong>01</strong>0–30 sec</div><div class="segment" data-segment="1"><strong>02</strong>30–60 sec</div><div class="segment" data-segment="2"><strong>03</strong>60–90 sec</div><div class="segment" data-segment="3"><strong>04</strong>90–120 sec</div></div><div class="actions"><button class="btn primary" id="startTimer">▶ START</button><button class="btn" id="pauseTimer" disabled>Ⅱ PAUSE</button><button class="btn" id="resetTimer">↺ RESET</button></div></div><aside class="timer-side"><h3>Timer controls</h3><p id="timerDescription">A one-minute countdown for a quick speech. A sound and red visual alert signal the end.</p><p id="debateInstructions" hidden>Each segment lasts 30 seconds. At each interval, a sound and red flash signal the speaker handoff. The final signal marks the end of the two-minute round.</p><div class="sound-row"><span>Alert sound</span><label class="switch"><input type="checkbox" id="soundToggle" checked><span class="slider"></span></label></div><div class="sound-row"><span>Visual flash</span><label class="switch"><input type="checkbox" id="flashToggle" checked><span class="slider"></span></label></div><div class="actions"><button class="btn" id="testSound">♪ Test sound</button></div><p class="hint">Tip: press START once before the event to allow browser audio. Keep this tab open while the timer runs.</p></aside></div></div></section>
+</div><div class="foot">OFF-the-CUFF · TEDxVITVellore-inspired event tool<br>Seat draw, topic draw and timer are independent. Keep this page open during the event.</div></div><div class="toast" id="toast" role="status"></div>
 
 <script>
-(() => {
-  const $ = id => document.getElementById(id);
-  const minInput = $('minNum'), maxInput = $('maxNum'), noRepeat = $('noRepeat');
-  let min = 1, max = 50;
-  let history = [];
-  let excluded = new Set();
-  let drawn = new Set();
-  let toastTimer;
+(()=>{'use strict';const $=id=>document.getElementById(id);let toastTimeout;function toast(msg){const el=$('toast');el.textContent=msg;el.classList.add('show');clearTimeout(toastTimeout);toastTimeout=setTimeout(()=>el.classList.remove('show'),2200)}
+function randomIndex(length){if(length<=1)return 0;if(crypto&&crypto.getRandomValues){const a=new Uint32Array(1),limit=Math.floor(4294967296/length)*length;do{crypto.getRandomValues(a)}while(a[0]>=limit);return a[0]%length}return Math.floor(Math.random()*length)}
 
-  function toast(message) {
-    const el = $('toast');
-    el.textContent = message;
-    el.classList.add('show');
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => el.classList.remove('show'), 2300);
-  }
+// SEAT NUMBER GENERATOR
+let sMin=1,sMax=50,seatHistory=[],seatRedoStack=[],excluded=new Set();
+function seatPool(){const a=[];for(let n=sMin;n<=sMax;n++)if(!excluded.has(n)&&(!$('seatNoRepeat').checked||!seatHistory.includes(n)))a.push(n);return a}
+function renderSeats(){const pool=seatPool();$('seatTotal').textContent=sMax-sMin+1;$('seatAvailable').textContent=pool.length;$('seatCalled').textContent=seatHistory.length;$('undoSeat').disabled=!seatHistory.length;$('redoSeat').disabled=!seatRedoStack.length;$('seatStatus').textContent=pool.length?'Ready to draw':'All eligible seats drawn';renderSet('excludedSeats',[...excluded].filter(n=>n>=sMin&&n<=sMax).sort((a,b)=>a-b),'No seats removed.',n=>{excluded.delete(n);renderSeats();toast('Seat '+n+' restored.')},'excluded');renderSet('seatHistory',seatHistory.slice().reverse(),'No seats drawn yet.',n=>{excluded.add(n);renderSeats();toast('Seat '+n+' excluded from future draws.')},'called')}
+function renderSet(id,values,emptyText,onRemove,cls){const el=$(id);el.replaceChildren();if(!values.length){const e=document.createElement('span');e.className='empty';e.textContent=emptyText;el.append(e);return}values.forEach(n=>{const chip=document.createElement('span');chip.className='chip';const label=document.createElement('span');label.textContent=(cls==='called'?'#':'')+n;const b=document.createElement('button');b.textContent=cls==='called'?'×':'↶';b.title=cls==='called'?'Exclude seat '+n:'Restore seat '+n;b.onclick=()=>onRemove(n);chip.append(label,b);el.append(chip)})}
+$('drawSeat').onclick=()=>{const pool=seatPool();if(!pool.length)return toast('No available seats. Reset or change the range.');const n=pool[randomIndex(pool.length)];seatRedoStack=[];seatHistory.push(n);$('seatDisplay').textContent=n;$('seatHint').textContent='Seat '+n+' — let’s hear it for our next speaker!';renderSeats()};
+$('clearSeat').onclick=()=>{$('seatDisplay').textContent='—';$('seatHint').textContent='Display cleared. The seat remains selected.'};
+$('undoSeat').onclick=()=>{if(!seatHistory.length)return toast('There is no seat selection to undo.');const n=seatHistory.pop();seatRedoStack.push(n);$('seatDisplay').textContent='—';$('seatHint').textContent='Seat '+n+' selection undone. Ready to draw.';renderSeats();toast('Seat '+n+' returned to the available pool.')};
+$('redoSeat').onclick=()=>{if(!seatRedoStack.length)return toast('There is no seat selection to redo.');const n=seatRedoStack.pop();if(n<sMin||n>sMax||excluded.has(n)){renderSeats();return toast('That seat is no longer eligible.')}seatHistory.push(n);$('seatDisplay').textContent=n;$('seatHint').textContent='Seat '+n+' — selection redone.';renderSeats();toast('Seat '+n+' selection restored.')};
+$('applySeats').onclick=()=>{const a=Number($('seatMin').value),b=Number($('seatMax').value);if($('seatMin').value===''||$('seatMax').value===''||!Number.isInteger(a)||!Number.isInteger(b)||a>b||b-a>9999)return toast('Enter a valid range of up to 10,000 numbers.');sMin=a;sMax=b;seatHistory=seatHistory.filter(n=>n>=a&&n<=b);seatRedoStack=seatRedoStack.filter(n=>n>=a&&n<=b);excluded=new Set([...excluded].filter(n=>n>=a&&n<=b));$('seatDisplay').textContent='—';$('seatHint').textContent='Range updated. Ready to draw.';renderSeats();toast('Seat range updated.')};
+$('resetSeats').onclick=()=>{if(seatHistory.length&&!confirm('Reset the seat round? Removed seats will stay removed.'))return;seatHistory=[];seatRedoStack=[];$('seatDisplay').textContent='—';$('seatHint').textContent='Round reset. Ready for a fresh draw.';renderSeats();toast('Seat round reset.')};
+$('excludeSeat').onclick=()=>{const el=$('excludeSeatInput'),n=Number(el.value);if(el.value.trim()===''||!Number.isInteger(n)||n<sMin||n>sMax)return toast('Enter a seat number within the current range.');if(excluded.has(n))return toast('That seat is already removed.');excluded.add(n);seatRedoStack=seatRedoStack.filter(x=>x!==n);el.value='';renderSeats();toast('Seat '+n+' removed.')};
+$('excludeSeatInput').onkeydown=e=>{if(e.key==='Enter')$('excludeSeat').click()};$('seatNoRepeat').onchange=renderSeats;renderSeats();
 
-  function inRange(n) {
-    return Number.isInteger(n) && n >= min && n <= max;
-  }
+// TOPIC GENERATOR — separate from seats and timer
+let topics=["Does pineapple belong on pizza?","Are we too nonchalant?","Will AI overthrow us in the future?","Should doctors and healthcare workers be paid more than professional athletes?","Would immortality be a curse rather than a blessing?","Is Spider-Man the greatest piece of fiction ever created?","Is nostalgia poisoning modern culture?","Will humans fall in love with AI companions instead of seeking real connections?","Is documenting your life through Instagram Stories performative?","Does free will really exist?","Vampires","Werewolves","Goosebumps","Nostalgia","Why do we trust AI?","The internet never forgets.","Gen Z","Cringe","First Aid","VIT","Camera Glasses and Privacy","Cinema and Consequences","Confidence vs Competence","Search History Judgments","Is Luck More Than Chance?","Are We Losing Our Attention Spans?","Can Memes Change Society?","Is Being Average Underrated?","Are First Impressions Always Right?","Can We Live Without Lies?","Are Villains Better Than Heroes?","Team Cap vs. Team Iron Man","Would You Rather Read Minds or See the Future?","Can Money Actually Buy Happiness?","Is Soup Just Savoury Juice?","Main Character or Fan-Favourite Sidekick?","Is Ignorance Truly Bliss?","Is Chronically Online a Personality Trait?","Mysterious or Just Bad at Communicating?","Does a Straw Have One Hole or Two?","Esports vs Traditional Sports","The Rise of Influencers: Can Anyone Become Famous?","Cancel Culture: Accountability or Online Bullying?","Luxury Brands: Quality or Just a Logo?","The Dark Side of Reality TV","The Reality of “Get Rich Quick” Schemes","The Art of Procrastination","Android vs iPhone","The Joy of Doing Nothing","The Fear of Missing Out (FOMO)","An All-Nighter Before an Exam Does More Harm Than Good","Texting Is Better Than Calling","The Snooze Button Is a Trap Disguised as a Friend","Group Study Sessions Are Just Glorified Hangouts Where Nothing Gets Done","Failure Is a Better Teacher Than Success","Grades Do Not Define Your Intelligence","Dogs Make Better Pets Than Cats","Is Delusion the Key to Success?","Fame vs Genuine Respect","Are We Living or Posting?","Is College More Than a Degree?","Would You Want to Know Your Future?","Is Ghosting Ever Justified?","Passion vs Money","Do We Have Too Many Choices?","Smartest Person or Most Interesting?"];
+let usedTopics=new Set(),topicHistory=[],topicRedoStack=[];
+function renderTopics(){const available=topics.filter(t=>!usedTopics.has(t));$('topicTotal').textContent=topics.length;$('topicRemaining').textContent=available.length;$('topicUsed').textContent=usedTopics.size;$('undoTopic').disabled=!topicHistory.length;$('redoTopic').disabled=!topicRedoStack.length;$('topicStatus').textContent=available.length+' remaining';renderTopicChips('availableTopics',available,'Your topics will appear here.',false);renderTopicChips('usedTopics',topics.filter(t=>usedTopics.has(t)),'No topics drawn yet.',true);$('drawTopic').disabled=!available.length}
+function renderTopicChips(id,arr,emptyText,isUsed){const el=$(id);el.replaceChildren();if(!el)return;if(!arr.length){const s=document.createElement('span');s.className='empty';s.textContent=emptyText;el.append(s);return}arr.forEach(t=>{const c=document.createElement('span');c.className='chip';c.style.maxWidth='100%';const label=document.createElement('span');label.textContent=t;label.style.overflowWrap='anywhere';c.append(label);const b=document.createElement('button');b.textContent=isUsed?'↶':'×';b.title=isUsed?'Make topic available again':'Remove topic';b.onclick=()=>{if(isUsed)usedTopics.delete(t);else{topics=topics.filter(x=>x!==t);usedTopics.delete(t)}renderTopics()};c.append(b);el.append(c)})}
+$('addTopics').onclick=()=>{const lines=$('topicInput').value.split(/\r?\n/).map(x=>x.trim()).filter(Boolean);let added=0;for(const t of lines)if(!topics.includes(t)){topics.push(t);added++}$('topicInput').value='';renderTopics();toast(added?added+' topic(s) added.':'No new topics to add.')};
+$('clearTopicInput').onclick=()=>$('topicInput').value='';
+$('drawTopic').onclick=()=>{const available=topics.filter(t=>!usedTopics.has(t));if(!available.length)return toast('Add topics or reset the used list.');const t=available[randomIndex(available.length)];topicRedoStack=[];usedTopics.add(t);topicHistory.push(t);$('topicDisplay').textContent=t;$('topicHint').textContent='Topic selected. Research time starts when you’re ready.';renderTopics()};
+$('clearTopic').onclick=()=>{$('topicDisplay').textContent='—';$('topicHint').textContent='Display cleared. The topic remains selected.'};
+$('undoTopic').onclick=()=>{if(!topicHistory.length)return toast('There is no topic selection to undo.');const t=topicHistory.pop();topicRedoStack.push(t);usedTopics.delete(t);$('topicDisplay').textContent='—';$('topicHint').textContent='Topic selection undone. Ready to draw.';renderTopics();toast('Topic returned to the available pool.')};
+$('redoTopic').onclick=()=>{if(!topicRedoStack.length)return toast('There is no topic selection to redo.');const t=topicRedoStack.pop();if(!topics.includes(t)||usedTopics.has(t)){renderTopics();return toast('That topic is no longer available to redo.')}usedTopics.add(t);topicHistory.push(t);$('topicDisplay').textContent=t;$('topicHint').textContent='Topic selection redone.';renderTopics();toast('Topic selection restored.')};
+$('resetTopics').onclick=()=>{if(usedTopics.size&&!confirm('Make all topics available again? The seat generator and timer will not change.'))return;usedTopics.clear();topicHistory=[];topicRedoStack=[];$('topicDisplay').textContent='Ready when you are.';$('topicHint').textContent='Topics reset. Draw a new topic.';renderTopics();toast('Topic list reset.')};renderTopics();
 
-  function rangeCount() {
-    return Math.max(0, max - min + 1);
-  }
-
-  function availableNumbers() {
-    const nums = [];
-    for (let n = min; n <= max; n++) {
-      if (excluded.has(n)) continue;
-      if (noRepeat.checked && drawn.has(n)) continue;
-      nums.push(n);
-    }
-    return nums;
-  }
-
-  function render() {
-    const available = availableNumbers();
-    $('totalStat').textContent = rangeCount();
-    $('remainingStat').textContent = available.length;
-    $('calledStat').textContent = history.length;
-    $('drawBtn').disabled = available.length === 0;
-    $('statusText').textContent = available.length === 0 ? 'All eligible seats drawn' : 'Ready to draw';
-    $('modeHelp').textContent = noRepeat.checked
-      ? 'ON: drawn numbers are automatically unavailable until you reset the round.'
-      : 'OFF: numbers can appear again, but manually removed seats stay excluded.';
-    renderExcluded();
-    renderHistory();
-  }
-
-  function renderExcluded() {
-    const list = $('excludedList');
-    const nums = [...excluded].filter(inRange).sort((a,b) => a-b);
-    if (!nums.length) {
-      list.innerHTML = '<div class="empty">No seats removed.</div>';
-      return;
-    }
-    list.innerHTML = '';
-    nums.forEach(n => {
-      const chip = document.createElement('span');
-      chip.className = 'pill excluded';
-      const label = document.createElement('span');
-      label.textContent = n;
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.textContent = '↶';
-      btn.title = 'Restore seat ' + n;
-      btn.addEventListener('click', () => {
-        excluded.delete(n);
-        render();
-        toast('Seat ' + n + ' restored.');
-      });
-      chip.append(label, btn);
-      list.append(chip);
-    });
-  }
-
-  function renderHistory() {
-    const list = $('historyList');
-    if (!history.length) {
-      list.innerHTML = '<div class="empty">No numbers drawn yet.</div>';
-      return;
-    }
-    list.innerHTML = '';
-    [...history].reverse().forEach(n => {
-      const chip = document.createElement('span');
-      chip.className = 'pill called';
-      const label = document.createElement('span');
-      label.textContent = '#' + n;
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.textContent = '×';
-      btn.title = 'Remove seat ' + n + ' from future draws';
-      btn.addEventListener('click', () => {
-        excluded.add(n);
-        render();
-        toast('Seat ' + n + ' excluded from future draws.');
-      });
-      chip.append(label, btn);
-      list.append(chip);
-    });
-  }
-
-  function applyRange() {
-    const newMin = Number(minInput.value), newMax = Number(maxInput.value);
-    if (!Number.isInteger(newMin) || !Number.isInteger(newMax))
-      return toast('Enter whole numbers for the range.');
-    if (newMin > newMax)
-      return toast('Minimum must be less than or equal to maximum.');
-    if (newMax - newMin > 9999)
-      return toast('Please keep the range to 10,000 numbers or fewer.');
-
-    min = newMin;
-    max = newMax;
-    history = history.filter(inRange);
-    drawn = new Set(history);
-    excluded = new Set([...excluded].filter(inRange));
-    $('numberDisplay').textContent = '—';
-    $('stageLabel').textContent = 'Next seat number';
-    $('stageHint').textContent = 'Range updated. Ready for the next draw.';
-    render();
-    toast('Range updated to ' + min + '–' + max + '.');
-  }
-
-  function draw() {
-    const pool = availableNumbers();
-    if (!pool.length) {
-      toast('No eligible numbers left. Reset or change your range.');
-      return;
-    }
-    let index;
-    if (window.crypto && window.crypto.getRandomValues) {
-      const buf = new Uint32Array(1);
-      const limit = Math.floor(0x100000000 / pool.length) * pool.length;
-      do { window.crypto.getRandomValues(buf); } while (buf[0] >= limit);
-      index = buf[0] % pool.length;
-    } else {
-      index = Math.floor(Math.random() * pool.length);
-    }
-    const selected = pool[index];
-    history.push(selected);
-    drawn.add(selected);
-
-    const display = $('numberDisplay');
-    display.classList.remove('has-value');
-    void display.offsetWidth;
-    display.textContent = selected;
-    display.classList.add('has-value');
-    $('stageLabel').textContent = 'Participant seat';
-    $('stageHint').textContent = 'Seat ' + selected + ' — let’s hear it for our next speaker!';
-    render();
-  }
-
-  function removeNumber() {
-    const input = $('removeNum');
-    const value = Number(input.value);
-    if (input.value.trim() === '' || !Number.isInteger(value))
-      return toast('Enter a seat number to remove.');
-    if (!inRange(value))
-      return toast('That number is outside the current range.');
-    if (excluded.has(value))
-      return toast('That seat is already removed.');
-    excluded.add(value);
-    input.value = '';
-    render();
-    toast('Seat ' + value + ' removed from the draw.');
-  }
-
-  function resetRound() {
-    history = [];
-    drawn = new Set();
-    $('numberDisplay').textContent = '—';
-    $('numberDisplay').classList.remove('has-value');
-    $('stageLabel').textContent = 'Next seat number';
-    $('stageHint').textContent = 'Round reset. Ready for a fresh draw.';
-    render();
-    toast('Round reset. Draw history cleared.');
-  }
-
-  $('applyRangeBtn').addEventListener('click', applyRange);
-  $('drawBtn').addEventListener('click', draw);
-  $('removeBtn').addEventListener('click', removeNumber);
-  $('removeNum').addEventListener('keydown', e => {
-    if (e.key === 'Enter') removeNumber();
-  });
-
-  $('resetBtn').addEventListener('click', () => {
-    if (history.length && !confirm('Reset the round and allow previously drawn numbers again? Removed seats will remain removed.'))
-      return;
-    resetRound();
-  });
-
-  $('clearHistoryBtn').addEventListener('click', () => {
-    if (!history.length) return toast('History is already empty.');
-    if (!confirm('Clear visible history? Drawn numbers will still stay unavailable until you reset the round.'))
-      return;
-    history = [];
-    render();
-    toast('Visible history cleared.');
-  });
-
-  noRepeat.addEventListener('change', () => {
-    render();
-    toast(noRepeat.checked ? 'No-repeat mode is ON.' : 'Repeat mode is ON.');
-  });
-
-  render();
+// SPEECH AND DEBATE TIMER — independent of both generators
+let mode='speech1',duration=60,remaining=60,elapsed=0,interval=null,running=false,finished=false,lastBoundary=0,audioCtx=null;
+const modeNames={speech1:'One-minute speech',speech2:'Two-minute speech',debate:'Debate · 4 × 30 seconds'};
+function audioReady(){try{const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return null;if(!audioCtx)audioCtx=new AC();if(audioCtx.state==='suspended')audioCtx.resume();return audioCtx}catch(e){return null}}
+function beep(kind='alert'){if(!$('soundToggle').checked)return;const ctx=audioReady();if(!ctx)return;const now=ctx.currentTime;const patterns=kind==='tick'?[[660,0,.12]]:kind==='end'?[[880,0,.18],[660,.22,.18],[880,.44,.3]]:[[740,0,.12],[880,.17,.16]];patterns.forEach(([freq,offset,len])=>{const osc=ctx.createOscillator(),gain=ctx.createGain();osc.type='sine';osc.frequency.value=freq;gain.gain.setValueAtTime(.0001,now+offset);gain.gain.exponentialRampToValueAtTime(.18,now+offset+.015);gain.gain.exponentialRampToValueAtTime(.0001,now+offset+len);osc.connect(gain);gain.connect(ctx.destination);osc.start(now+offset);osc.stop(now+offset+len+.02)})}
+function flash(){if(!$('flashToggle').checked)return;const el=$('timerDisplay');el.classList.remove('alert');void el.offsetWidth;el.classList.add('alert');setTimeout(()=>el.classList.remove('alert'),1400)}
+function fmt(s){s=Math.max(0,Math.ceil(s));return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')}
+function stopTimer(){if(interval!==null){clearInterval(interval);interval=null}running=false;$('pauseTimer').disabled=true;$('startTimer').disabled=finished;$('startTimer').textContent=remaining===duration?'▶ START':'▶ RESUME'}
+function renderTimer(){$('timeDisplay').textContent=fmt(remaining);if(mode==='debate'){const completed=Math.min(4,Math.floor(elapsed/30));document.querySelectorAll('.segment').forEach((el,i)=>{el.classList.toggle('current',running&&i===Math.min(3,Math.floor(elapsed/30)));el.classList.toggle('done-segment',i<completed||finished)});const speaker=Math.min(4,Math.floor(elapsed/30)+1);$('turnIndicator').textContent=finished?'DEBATE COMPLETE':(running||elapsed>0?'TURN '+speaker+' OF 4':'4 SPEAKERS · 30 SECONDS EACH')}else{$('turnIndicator').textContent=''}}
+function setMode(next){stopTimer();mode=next;duration=mode==='speech1'?60:120;remaining=duration;elapsed=0;finished=false;lastBoundary=0;document.querySelectorAll('.mode-tab').forEach(b=>b.classList.toggle('active',b.dataset.mode===mode));$('timerLabel').textContent=modeNames[mode];$('timerDescription').textContent=mode==='speech1'?'A one-minute countdown. A sound and red visual alert signal the end.':mode==='speech2'?'A two-minute countdown. A sound and red visual alert signal the end.':'A two-minute debate split into four 30-second turns, with a sound and visual alert at every handoff.';$('debateInstructions').hidden=mode!=='debate';$('segments').hidden=mode!=='debate';$('turnIndicator').textContent='';$('timerDisplay').classList.remove('done','alert');renderTimer();$('timerState').textContent='Ready to start';$('timerStatus').textContent='Ready'}
+function startTick(){if(!running)return;const now=performance.now();elapsed=Math.min(duration,elapsed+(now-startTick.last)/1000);startTick.last=now;remaining=Math.max(0,duration-elapsed);if(mode==='debate'){const boundary=Math.floor(elapsed/30);if(boundary>lastBoundary){lastBoundary=boundary;beep(elapsed>=duration?'end':'tick');flash();if(elapsed<duration){$('timerState').textContent='Switch speakers now';toast('30 seconds up — speaker '+(boundary+1)+' starts now.')}}}if(remaining<=0){remaining=0;elapsed=duration;finished=true;stopTimer();$('timerStatus').textContent='Time is up';$('timerState').textContent='TIME IS UP';$('timerDisplay').classList.add('done');$('startTimer').disabled=true;$('startTimer').textContent='✓ COMPLETE';if(mode!=='debate'||lastBoundary<4){beep('end');flash()}if(mode==='debate')$('turnIndicator').textContent='DEBATE COMPLETE';toast('Time is up!')}renderTimer()}
+$('startTimer').onclick=()=>{if(finished||running)return;audioReady();running=true;startTick.last=performance.now();$('timerStatus').textContent='Running';$('timerState').textContent='Timer running';$('startTimer').disabled=true;$('startTimer').textContent='▶ RUNNING';$('pauseTimer').disabled=false;interval=setInterval(startTick,100)};
+$('pauseTimer').onclick=()=>{if(!running)return;const now=performance.now();elapsed=Math.min(duration,elapsed+(now-startTick.last)/1000);remaining=Math.max(0,duration-elapsed);stopTimer();$('timerStatus').textContent='Paused';$('timerState').textContent='Paused';$('startTimer').disabled=false;$('startTimer').textContent='▶ RESUME';renderTimer()};
+$('resetTimer').onclick=()=>{stopTimer();remaining=duration;elapsed=0;finished=false;lastBoundary=0;$('timerDisplay').classList.remove('done','alert');$('timerStatus').textContent='Ready';$('timerState').textContent='Ready to start';$('startTimer').disabled=false;$('startTimer').textContent='▶ START';renderTimer()};
+document.querySelectorAll('.mode-tab').forEach(b=>b.onclick=()=>setMode(b.dataset.mode));
+$('testSound').onclick=()=>{audioReady();beep('end');flash()};
+setMode('speech1');
 })();
-</script>
-</body>
-</html>
+</script></body></html>
